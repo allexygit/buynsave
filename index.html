@@ -1,0 +1,1916 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#fbf7f2">
+<title>Buy N' Save — Smart Fashion & Deals DR</title>
+<style>
+:root{
+  --ink:#17385f; --ink-2:#244d7c; --blue:#2e66a5; --blue-2:#7398c6;
+  --powder:#dce6f5; --powder-2:#edf2fa; --cream:#fbf7f2; --paper:#fffdfa;
+  --line:#e9e1d9; --muted:#71839a; --gold:#e4bd79; --green:#3d8068;
+  --shadow:0 16px 42px rgba(32,58,91,.10); --r:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:14px;transition:background .35s ease}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid rgba(70,126,190,.35);outline-offset:2px}
+
+/* Interactive Fixed Smartphone Frame with Internal Viewport Scroll */
+body.mobile-sim{
+  background:radial-gradient(circle at 50% 20%, #e7eef8 0%, #cfd9e8 100%);
+  height:100vh;
+  overflow:hidden;
+  padding:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+body.mobile-sim .app{
+  width:398px;
+  max-width:95vw;
+  height:min(820px, 94vh);
+  min-height:0;
+  background:var(--cream);
+  border-radius:46px;
+  border:11px solid #17385f;
+  box-shadow:0 30px 75px rgba(17,38,65,.32), inset 0 0 0 2px rgba(255,255,255,.25);
+  overflow:hidden;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  animation:popFrame .35s cubic-bezier(.16,1,.3,1);
+}
+@keyframes popFrame{from{transform:scale(.94);opacity:.75}to{transform:scale(1);opacity:1}}
+
+body.mobile-sim .ios-bar{display:flex;flex-shrink:0}
+body.mobile-sim .deal-ticker{flex-shrink:0;font-size:10px;padding:5px 0}
+body.mobile-sim .topbar{
+  position:relative;
+  flex-shrink:0;
+  height:auto;
+  padding:8px 12px 10px;
+  gap:6px;
+  flex-wrap:wrap;
+  z-index:10;
+}
+body.mobile-sim .brand{min-width:0;gap:8px}
+body.mobile-sim .brand-logo-wrap{width:36px;height:36px;border-radius:11px}
+body.mobile-sim .brand-logo-wrap svg{width:28px;height:28px}
+body.mobile-sim .brand-name{font-size:16px}
+body.mobile-sim .brand-tag{display:none}
+body.mobile-sim .pill-toggle{height:30px;padding:0 9px;font-size:10px}
+body.mobile-sim .icon-btn{width:32px;height:32px}
+body.mobile-sim .search-wrap{order:4;flex:0 0 100%;width:100%;max-width:none;height:34px;margin-top:2px}
+body.mobile-sim .search-wrap svg{top:8px;left:12px;width:15px;height:15px}
+body.mobile-sim .search-wrap input{font-size:12px;padding-left:36px}
+body.mobile-sim .location-pill{height:30px;padding:0 9px;font-size:10px}
+
+body.mobile-sim .layout{
+  display:block;
+  flex:1;
+  min-height:0;
+  overflow-y:auto;
+  overflow-x:hidden;
+  padding:14px 14px 28px;
+  max-width:none;
+  scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+}
+body.mobile-sim .layout::-webkit-scrollbar{width:4px}
+body.mobile-sim .layout::-webkit-scrollbar-thumb{background:rgba(23,56,95,.2);border-radius:99px}
+body.mobile-sim .sidebar{display:none}
+body.mobile-sim .hero{grid-template-columns:1fr;min-height:0;border-radius:24px}
+body.mobile-sim .hero-copy{padding:20px 18px 6px}
+body.mobile-sim .hero h1{font-size:28px}
+body.mobile-sim .hero p{font-size:12px;margin-bottom:14px}
+body.mobile-sim .hero-art{min-height:165px;padding:6px}
+body.mobile-sim .hero-gift-svg{width:152px;height:152px}
+body.mobile-sim .offer-bubble{padding:6px 10px;font-size:9px;bottom:10px;right:10px}
+body.mobile-sim .offer-bubble strong{font-size:11.5px}
+body.mobile-sim .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+body.mobile-sim .product-art{height:124px}
+body.mobile-sim .product-art .emoji{font-size:56px}
+body.mobile-sim .product-title{font-size:12px}
+body.mobile-sim .price{font-size:15px}
+body.mobile-sim .card-actions .btn{font-size:9.5px;padding:8px 6px}
+body.mobile-sim .card-actions .icon-only{width:30px;height:30px}
+body.mobile-sim .promo-row,body.mobile-sim .ai-layout,body.mobile-sim .profile-grid,body.mobile-sim .mall-grid,body.mobile-sim .reels-grid,body.mobile-sim .team-grid,body.mobile-sim .store-badges,body.mobile-sim .school-meta-grid,body.mobile-sim .city-grid{grid-template-columns:1fr}
+body.mobile-sim .bottom-nav{
+  display:flex;
+  position:relative;
+  flex-shrink:0;
+  left:auto;right:auto;bottom:auto;
+  margin:6px 10px 10px;
+  border-radius:20px;
+  padding:5px 4px;
+}
+body.mobile-sim .home-indicator{display:block}
+body.mobile-sim .overlay{position:absolute}
+body.mobile-sim .toast{position:absolute;bottom:76px;font-size:11px;padding:9px 14px}
+
+.ios-bar{display:none;justify-content:space-between;align-items:center;padding:9px 22px 5px;background:var(--cream);font-size:11px;font-weight:700;color:var(--ink);position:relative}
+.dynamic-island{width:84px;height:20px;background:#17385f;border-radius:99px;margin:0 auto}
+.home-indicator{display:none;width:120px;height:4px;background:rgba(23,56,95,.28);border-radius:99px;margin:0 auto 6px;flex-shrink:0}
+
+.app{min-height:100vh}
+
+/* Live Deals Marquee Ticker */
+.deal-ticker{background:linear-gradient(90deg,#17385f,#244d7c,#17385f);color:#fff;font-size:11px;padding:7px 0;overflow:hidden;white-space:nowrap;border-bottom:1px solid rgba(255,255,255,.12)}
+.ticker-track{display:inline-flex;gap:36px;animation:marquee 32s linear infinite;padding-left:100%}
+.ticker-track:hover{animation-play-state:paused}
+.ticker-item{display:inline-flex;align-items:center;gap:7px;letter-spacing:.2px}
+.ticker-item span{color:#fce181;font-weight:800}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+
+.topbar{height:76px;position:sticky;top:0;z-index:20;background:rgba(251,247,242,.93);backdrop-filter:blur(16px);border-bottom:1px solid rgba(225,216,207,.75);display:flex;align-items:center;gap:14px;padding:0 clamp(16px,3.5vw,52px)}
+.brand{display:flex;align-items:center;gap:11px;min-width:210px;text-decoration:none;color:var(--ink)}
+.brand-logo-wrap{width:46px;height:46px;border-radius:14px;background:#f3e9dc;border:1px solid #e5d8c7;display:grid;place-items:center;flex-shrink:0;box-shadow:0 4px 12px rgba(23,56,95,.07);transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.brand:hover .brand-logo-wrap{transform:rotate(-6deg) scale(1.06)}
+.brand-name{font-family:Georgia,"Times New Roman",serif;font-size:21px;font-weight:700;letter-spacing:-.7px;line-height:1}
+.brand-name span{color:var(--blue)}
+.brand-tag{font-size:9px;letter-spacing:1.3px;text-transform:uppercase;color:#8292a4;margin-top:4px}
+.search-wrap{height:42px;max-width:420px;flex:1;position:relative}
+.search-wrap svg{position:absolute;left:15px;top:12px;color:#6d87a6;transition:color .2s}
+.search-wrap input{width:100%;height:100%;border:1px solid #e5e1dc;border-radius:99px;background:#fffdfa;padding:0 16px 0 42px;color:var(--ink);font-size:13px;box-shadow:0 4px 14px rgba(39,66,96,.035);transition:border-color .2s,box-shadow .2s}
+.search-wrap input:focus{border-color:#89a8d3;box-shadow:0 6px 20px rgba(46,102,165,.12)}
+.search-wrap input::placeholder{color:#96a3b2}
+.top-actions{display:flex;align-items:center;gap:8px;margin-left:auto}
+.pill-toggle,.location-pill,.icon-btn{border:1px solid #e7e0d9;background:#fffdfa;color:var(--ink);border-radius:99px;height:38px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 12px;font-size:11px;font-weight:700;transition:all .2s cubic-bezier(.22,1,.36,1)}
+.pill-toggle:hover,.location-pill:hover,.icon-btn:hover{background:#eef3fa;border-color:#c6d5ea;transform:translateY(-1px)}
+.pill-toggle.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.location-pill{color:#2e66a5;font-weight:700;background:#f4f8fd;border-color:#d4e1f2}
+.icon-btn{width:38px;padding:0;position:relative}
+.icon-btn svg{width:18px;height:18px}
+.cart-count{position:absolute;right:-3px;top:-4px;background:var(--ink);color:white;font-size:10px;min-width:18px;height:18px;border-radius:20px;display:grid;place-items:center;border:2px solid var(--cream);transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
+.cart-count.bump{transform:scale(1.35);background:var(--blue)}
+
+.layout{max-width:1510px;margin:0 auto;display:grid;grid-template-columns:242px minmax(0,1fr);gap:28px;padding:24px clamp(16px,3.5vw,52px) 80px}
+.sidebar{position:sticky;top:98px;align-self:start;height:calc(100vh - 120px);display:flex;flex-direction:column;gap:16px}
+.side-card{background:rgba(255,253,250,.85);border:1px solid var(--line);border-radius:24px;padding:15px 12px;box-shadow:0 8px 28px rgba(39,66,96,.035)}
+.side-label{font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:#98a3af;padding:0 12px 9px}
+.nav-list{display:grid;gap:3px}
+.nav-btn{border:0;background:transparent;color:#71839b;text-align:left;padding:10px 13px;border-radius:14px;display:flex;align-items:center;gap:11px;font-weight:600;font-size:13px;transition:all .22s cubic-bezier(.22,1,.36,1)}
+.nav-btn svg{width:18px;height:18px;stroke-width:1.8;flex-shrink:0;transition:transform .2s}
+.nav-btn:hover{background:#f2f5fa;color:var(--ink);transform:translateX(3px)}
+.nav-btn.active{background:var(--powder);color:var(--ink);box-shadow:inset 3px 0 0 var(--blue)}
+.nav-btn.active svg{transform:scale(1.08)}
+.nav-count{margin-left:auto;font-size:10px;background:#fff;border-radius:20px;padding:2px 7px;color:var(--blue);font-weight:700}
+
+.premium-card{position:relative;overflow:hidden;border-radius:22px;padding:17px;background:linear-gradient(145deg,#e4ebf7,#cbd9ee);border:1px solid #cfdbec;transition:transform .25s ease,box-shadow .25s ease}
+.premium-card:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(46,102,165,.14)}
+.premium-card:after{content:"✦";position:absolute;right:14px;top:8px;color:#fff;font-size:34px;opacity:.85;animation:spinStar 9s linear infinite}
+@keyframes spinStar{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.premium-card h3{font-family:Georgia,serif;font-size:19px;line-height:1.12;margin:0 0 6px;max-width:165px}
+.premium-card p{font-size:11px;line-height:1.45;color:#526d90;margin:0 0 12px}
+.price-badge{display:inline-block;background:var(--ink);color:#fff;font-size:10px;font-weight:800;padding:4px 9px;border-radius:99px;margin-bottom:9px}
+
+.btn{border:0;border-radius:99px;background:var(--ink);color:#fff;padding:11px 17px;font-weight:650;letter-spacing:.05px;box-shadow:0 6px 16px rgba(23,56,95,.15);transition:all .22s cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(23,56,95,.22)}
+.btn:active{transform:translateY(0) scale(.97)}
+.btn.small{font-size:11px;padding:9px 13px}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid #dce4ee;box-shadow:none}
+.btn.ghost:hover{background:#f4f8fd;border-color:#b8cce6}
+.btn.blue{background:var(--blue)}
+.btn.soft{background:#e5edf8;color:var(--ink);box-shadow:none}
+.btn.soft:hover{background:#d7e4f5}
+.btn.full{width:100%}
+
+.side-bottom{margin-top:auto;padding:4px 8px;color:#9aa6b3;font-size:10px;line-height:1.6}
+.content{min-width:0;max-width:1120px;width:100%;margin:0 auto;animation:viewFade .32s cubic-bezier(.22,1,.36,1)}
+@keyframes viewFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin:2px 0 18px;flex-wrap:wrap}
+.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#8196b0;font-weight:700;margin-bottom:7px}
+h1,h2,h3,p{margin-top:0}
+h1{font-family:Georgia,"Times New Roman",serif;font-weight:600;font-size:clamp(26px,3vw,37px);letter-spacing:-1px;margin-bottom:6px}
+.page-head p{color:var(--muted);font-size:13px;margin:0;line-height:1.55}
+.section-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:26px 0 14px}
+.section-row h2{font-family:Georgia,serif;font-size:22px;font-weight:600;margin:0;letter-spacing:-.4px}
+.text-link{border:0;background:none;color:var(--blue);font-size:12px;font-weight:700;padding:6px;transition:transform .2s}
+.text-link:hover{transform:translateX(3px)}
+
+/* Dynamic Hero Banner */
+.hero{min-height:285px;border-radius:30px;overflow:hidden;position:relative;background:linear-gradient(115deg,#dce6f5 0%,#eaf0f9 52%,#c7d7ee 100%);display:grid;grid-template-columns:1.1fr .9fr;box-shadow:var(--shadow);border:1px solid #d4deeb}
+.hero:before{content:"";position:absolute;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.65),rgba(255,255,255,0));right:-60px;top:-120px;animation:orbFloat 7s ease-in-out infinite alternate}
+@keyframes orbFloat{from{transform:translate(0,0)}to{transform:translate(-25px,20px)}}
+.hero-copy{position:relative;z-index:1;padding:34px 38px;align-self:center}
+.hero .eyebrow{color:#58779c}
+.hero h1{font-size:clamp(31px,3.8vw,45px);line-height:1.05;max-width:460px;color:#173c68;margin:0 0 13px}
+.hero-heart{font-size:.66em;color:#5e82ae;vertical-align:middle;display:inline-block;margin-left:3px;font-weight:400;animation:heartBeat 2.4s ease-in-out infinite}
+@keyframes heartBeat{0%,100%{transform:scale(1)}14%{transform:scale(1.18)}28%{transform:scale(1)}42%{transform:scale(1.12)}}
+.hero p{color:#567091;max-width:430px;line-height:1.62;font-size:13px;margin-bottom:20px}
+.hero-art{position:relative;min-height:255px;display:grid;place-items:center;z-index:1;padding:12px}
+.hero-gift-svg{width:232px;height:232px;filter:drop-shadow(0 18px 28px rgba(32,58,91,.16));animation:floatGift 3.8s ease-in-out infinite;transition:transform .3s}
+.hero-gift-svg:hover{transform:scale(1.05) rotate(-2deg)}
+@keyframes floatGift{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.spark{position:absolute;color:#fff;font-size:24px;opacity:.9;animation:twinkle 2.6s ease-in-out infinite}
+.spark.s1{right:18%;top:22px}.spark.s2{left:9%;bottom:32px;color:#6b8eb9;animation-delay:.8s}.spark.s3{right:7%;bottom:54px;color:#fff;animation-delay:1.4s}
+@keyframes twinkle{0%,100%{opacity:.45;transform:scale(.9)}50%{opacity:1;transform:scale(1.18)}}
+.offer-bubble{position:absolute;bottom:14px;right:14px;border:1px solid rgba(255,255,255,.85);background:rgba(255,253,250,.92);backdrop-filter:blur(6px);border-radius:16px;padding:9px 13px;font-size:10px;color:#496889;box-shadow:0 8px 20px rgba(35,65,103,.1);transition:transform .25s}
+.offer-bubble:hover{transform:translateY(-3px)}
+.offer-bubble strong{display:block;color:var(--ink);font-size:13.5px}
+.demo-note{display:inline-flex;align-items:center;gap:6px;background:#fff7e9;color:#9a723d;border:1px solid #f1dfc1;padding:5px 10px;border-radius:50px;font-size:10px;font-weight:700}
+
+.category-row{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:1px solid #e5e3df;border-radius:99px;background:#fffdfa;color:#70829a;padding:8px 15px;font-size:11.5px;font-weight:650;transition:all .2s cubic-bezier(.22,1,.36,1)}
+.chip.active,.chip:hover{border-color:#bed0e8;background:#e7eef8;color:var(--ink);transform:translateY(-1px)}
+.chip.active{box-shadow:0 4px 12px rgba(46,102,165,.12)}
+
+/* Product Cards */
+.product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.product-card{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:21px;padding:10px;min-width:0;transition:all .28s cubic-bezier(.22,1,.36,1);box-shadow:0 5px 17px rgba(38,60,87,.025);animation:cardEnter .4s cubic-bezier(.22,1,.36,1) both}
+.product-card:nth-child(2){animation-delay:.04s}
+.product-card:nth-child(3){animation-delay:.08s}
+.product-card:nth-child(4){animation-delay:.12s}
+.product-card:nth-child(5){animation-delay:.16s}
+.product-card:nth-child(6){animation-delay:.20s}
+@keyframes cardEnter{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.product-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:#cddbef}
+.product-art{height:165px;border-radius:15px;position:relative;display:grid;place-items:center;overflow:hidden;background:linear-gradient(145deg,#eff3fa,#dce6f4)}
+.product-art:before{content:"";position:absolute;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.38);right:-32px;top:-55px}
+.product-art .emoji{font-size:70px;filter:drop-shadow(0 10px 9px rgba(30,55,85,.13));position:relative;z-index:1;transform:rotate(-5deg);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.product-card:hover .product-art .emoji{transform:rotate(0deg) scale(1.12)}
+.product-art .brand-stamp{position:absolute;bottom:9px;left:10px;z-index:2;background:rgba(23,56,95,.9);color:#fff;font-size:9px;font-weight:800;letter-spacing:1.1px;text-transform:uppercase;padding:4px 9px;border-radius:8px}
+.product-art.pink{background:linear-gradient(145deg,#f8ebe5,#f1dcd3)}
+.product-art.sand{background:linear-gradient(145deg,#f4efe5,#e8dece)}
+.product-art.lilac{background:linear-gradient(145deg,#eeebf7,#dadff1)}
+.product-art.mint{background:linear-gradient(145deg,#e6f0ec,#d0e4df)}
+.product-art.dark{background:linear-gradient(145deg,#e0e8f3,#c7d6e9)}
+.heart-btn{position:absolute;right:15px;top:15px;width:32px;height:32px;border:1px solid rgba(255,255,255,.75);border-radius:50%;background:rgba(255,253,250,.92);color:#55779e;display:grid;place-items:center;z-index:2;transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
+.heart-btn:hover{transform:scale(1.15)}
+.heart-btn.active{color:#d16d80;animation:popHeart .32s cubic-bezier(.34,1.56,.64,1)}
+@keyframes popHeart{0%{transform:scale(.8)}50%{transform:scale(1.3)}100%{transform:scale(1)}}
+.heart-btn svg{width:16px;height:16px}
+.sponsor-tag{position:absolute;top:11px;left:11px;z-index:2;background:rgba(255,253,250,.94);border:1px solid #f0dfc4;border-radius:30px;padding:4px 8px;font-size:9px;font-weight:750;color:#8a6b3f}
+.product-info{padding:11px 5px 5px}
+.brand-line{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:4px}
+.brand-pill{font-size:10px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;color:var(--blue);background:#edf3fb;padding:3px 8px;border-radius:6px}
+.mall-tag{font-size:10px;color:#8293a6;font-weight:600}
+.product-title{font-size:13.5px;font-weight:750;color:#233f63;margin:2px 0 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.product-meta{font-size:10px;color:#8c9bab;display:flex;align-items:center;justify-content:space-between;gap:7px;margin-bottom:9px}
+.price-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.price{font-size:17px;font-weight:800;letter-spacing:-.5px;color:var(--ink)}
+.old-price{font-size:10px;color:#a4aab0;text-decoration:line-through;margin-left:4px}
+.save-pill{font-size:9px;color:#35735f;background:#e9f3ef;border-radius:20px;padding:5px 7px;font-weight:800;white-space:nowrap}
+.card-actions{display:flex;gap:7px;margin-top:11px}
+.card-actions .btn{flex:1;padding:9px 10px;font-size:10.5px}
+.card-actions .icon-only{width:35px;border-radius:50%;padding:0;display:grid;place-items:center}
+
+/* Influencer Reels Section */
+.reels-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.reel-card{position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--line);background:var(--paper);box-shadow:0 6px 20px rgba(32,58,91,.04);cursor:pointer;transition:all .26s cubic-bezier(.22,1,.36,1)}
+.reel-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.reel-visual{height:178px;position:relative;display:flex;flex-direction:column;justify-content:space-between;padding:12px;color:#fff;overflow:hidden}
+.reel-visual.r1{background:linear-gradient(155deg,#244d7c 0%,#5f84b3 55%,#c5d5eb 100%)}
+.reel-visual.r2{background:linear-gradient(155deg,#5a463a 0%,#a78772 55%,#ead7c7 100%)}
+.reel-visual.r3{background:linear-gradient(155deg,#254f47 0%,#588e81 55%,#cbe2db 100%)}
+.reel-top{display:flex;justify-content:space-between;align-items:center;z-index:2}
+.reel-badge{background:rgba(255,255,255,.22);backdrop-filter:blur(8px);padding:4px 9px;border-radius:99px;font-size:9.5px;font-weight:700;display:inline-flex;align-items:center;gap:5px}
+.reel-dot{width:7px;height:7px;border-radius:50%;background:#ff6b6b;animation:pulse 1.4s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(1.3)}}
+.reel-center{text-align:center;z-index:2}
+.reel-emoji{font-size:52px;display:block;filter:drop-shadow(0 8px 14px rgba(0,0,0,.22));animation:floaty 3s ease-in-out infinite;transition:transform .3s}
+.reel-card:hover .reel-emoji{transform:scale(1.15)}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.reel-play{width:34px;height:34px;border-radius:50%;background:rgba(255,253,250,.92);color:var(--ink);display:grid;place-items:center;font-size:12px;box-shadow:0 6px 16px rgba(0,0,0,.18);transition:transform .25s}
+.reel-card:hover .reel-play{transform:scale(1.15);background:#fff}
+.reel-body{padding:12px 14px}
+.reel-creator{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.creator-ava{width:26px;height:26px;border-radius:50%;background:var(--powder);color:var(--ink);font-size:10px;font-weight:800;display:grid;place-items:center}
+.reel-creator strong{font-size:11.5px;display:block}
+.reel-creator small{font-size:9.5px;color:var(--muted)}
+.reel-caption{font-size:11px;color:#4a607a;line-height:1.45;margin:0 0 9px}
+.reel-code{display:flex;align-items:center;justify-content:space-between;background:#f3f6fb;border:1px dashed #b9cde6;border-radius:10px;padding:6px 10px;font-size:10px;font-weight:700;color:var(--ink)}
+
+.story-progress{height:4px;background:rgba(255,255,255,.3);border-radius:99px;overflow:hidden;margin-bottom:10px}
+.story-progress-fill{height:100%;width:0%;background:#fff;animation:storyRun 6s linear forwards}
+@keyframes storyRun{to{width:100%}}
+
+/* Malls Directory */
+.mall-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.mall-card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:0 5px 16px rgba(38,60,87,.03);display:flex;flex-direction:column;gap:10px;transition:all .24s ease}
+.mall-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#cddbef}
+.mall-head{display:flex;align-items:center;gap:11px}
+.mall-icon{width:42px;height:42px;border-radius:14px;background:var(--powder);color:var(--ink);font-family:Georgia,serif;font-weight:700;font-size:15px;display:grid;place-items:center;flex-shrink:0}
+.mall-head h3{font-family:Georgia,serif;font-size:17px;margin:0 0 2px}
+.mall-head small{font-size:10px;color:var(--muted)}
+.store-tags{display:flex;flex-wrap:wrap;gap:5px}
+.store-tag{font-size:10px;font-weight:650;background:#f4f7fc;color:var(--ink-2);border:1px solid #e1e9f4;padding:4px 8px;border-radius:8px;transition:all .18s;cursor:pointer}
+.store-tag:hover{background:var(--powder);border-color:#b8cce6;transform:translateY(-1px)}
+
+/* City Picker Grid */
+.city-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px}
+.city-option{border:1px solid #e2e8f0;background:#fffdfa;border-radius:14px;padding:11px 13px;text-align:left;transition:all .18s;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.city-option:hover{border-color:#9fb9dc;background:#f3f7fd}
+.city-option.selected{border-color:var(--blue);background:#e7effa;box-shadow:0 4px 12px rgba(46,102,165,.12)}
+.city-option strong{display:block;font-size:12.5px;color:var(--ink)}
+.city-option small{font-size:10px;color:var(--muted)}
+
+/* School Presentation Banner & Team Grid */
+.school-banner{background:linear-gradient(115deg,#e4ebf7 0%,#eef3fb 60%,#dce6f5 100%);border:1px solid #cddbef;border-radius:20px;padding:16px 20px;margin-bottom:14px;box-shadow:0 6px 20px rgba(32,58,91,.04)}
+.school-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.school-title{font-family:Georgia,serif;font-size:18px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px}
+.school-meta-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.school-pill{background:rgba(255,253,250,.85);border:1px solid #dde6f2;border-radius:12px;padding:8px 12px}
+.school-pill small{display:block;font-size:9px;text-transform:uppercase;letter-spacing:1.1px;color:#7a8fa8;font-weight:700;margin-bottom:2px}
+.school-pill strong{font-size:12px;color:var(--ink)}
+
+.team-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:10px}
+.team-card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:16px;display:flex;align-items:center;gap:14px;box-shadow:0 5px 16px rgba(38,60,87,.025);transition:all .24s cubic-bezier(.22,1,.36,1);animation:cardEnter .4s cubic-bezier(.22,1,.36,1) both}
+.team-card:nth-child(2){animation-delay:.06s}
+.team-card:nth-child(3){animation-delay:.12s}
+.team-card:nth-child(4){animation-delay:.18s}
+.team-card:hover{transform:translateY(-3px);border-color:#b8cee9;box-shadow:var(--shadow)}
+.team-ava{width:50px;height:50px;border-radius:16px;background:linear-gradient(145deg,#dce6f5,#bfd2ec);color:var(--ink);font-family:Georgia,serif;font-weight:700;font-size:17px;display:grid;place-items:center;flex-shrink:0;box-shadow:inset 0 1px 0 rgba(255,255,255,.8)}
+.team-card h4{margin:0 0 3px;font-size:14.5px;color:var(--ink)}
+.team-card small{display:block;font-size:11.5px;color:var(--blue);font-weight:650}
+.team-card span{display:block;font-size:10px;color:var(--muted);margin-top:3px}
+
+/* Animated Store Download Badges */
+.store-badges{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.store-btn{border:1px solid #17385f;background:linear-gradient(135deg,#17385f 0%,#234b7a 100%);color:#fff;border-radius:18px;padding:14px 18px;display:flex;align-items:center;gap:14px;text-align:left;transition:all .26s cubic-bezier(.22,1,.36,1);box-shadow:0 10px 24px rgba(23,56,95,.16);position:relative;overflow:hidden}
+.store-btn:before{content:"";position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);transition:left .55s ease}
+.store-btn:hover:before{left:140%}
+.store-btn:hover{transform:translateY(-3px) scale(1.01);box-shadow:0 14px 28px rgba(23,56,95,.25)}
+.store-btn.android{background:linear-gradient(135deg,#ffffff 0%,#f4f7fc 100%);color:var(--ink);border:1px solid #cfdbe9;box-shadow:0 8px 22px rgba(23,56,95,.07)}
+.store-btn.android:before{background:linear-gradient(90deg,transparent,rgba(46,102,165,.10),transparent)}
+.store-btn.android:hover{border-color:#93b2da;box-shadow:0 12px 26px rgba(23,56,95,.14)}
+.store-logo-box{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.12);display:grid;place-items:center;flex-shrink:0;transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.store-btn.android .store-logo-box{background:#eef3fa}
+.store-btn:hover .store-logo-box{transform:scale(1.1) rotate(-4deg)}
+.store-logo-box svg{width:26px;height:26px}
+.store-btn small{display:block;font-size:9.5px;text-transform:uppercase;letter-spacing:.9px;opacity:.82;font-weight:700}
+.store-btn strong{display:block;font-size:16px;font-family:Georgia,serif;margin-top:2px}
+.store-pill-tag{margin-left:auto;font-size:9.5px;font-weight:800;padding:4px 9px;border-radius:99px;background:rgba(255,255,255,.16);color:#fff}
+.store-btn.android .store-pill-tag{background:#e4edf8;color:var(--blue)}
+
+.promo-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+.promo-panel{border-radius:22px;padding:21px;min-height:145px;position:relative;overflow:hidden;background:#f4e9df;border:1px solid #ebddd2;transition:transform .24s ease}
+.promo-panel:hover{transform:translateY(-2px)}
+.promo-panel.blue-panel{background:#e4ebf5;border-color:#d4deeb}
+.promo-panel h3{font-family:Georgia,serif;font-size:21px;line-height:1.12;max-width:255px;margin:0 0 9px}
+.promo-panel p{font-size:11px;line-height:1.5;max-width:265px;color:#77869a;margin:0 0 13px}
+.promo-panel .deco{position:absolute;right:17px;bottom:-14px;font-size:84px;opacity:.18;transform:rotate(-16deg)}
+
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:0 8px 28px rgba(39,66,96,.035)}
+.compare-top{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:end;margin-bottom:18px}
+.select-label{display:block;font-size:10px;color:#8c9bac;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px}
+.select{height:44px;border:1px solid #e4e1dc;background:#fff;border-radius:12px;color:var(--ink);padding:0 12px;min-width:230px}
+.best-deal{background:linear-gradient(120deg,#e6f0eb,#edf4f0);border:1px solid #d8e9e0;border-radius:17px;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin:16px 0}
+.best-deal small{display:block;color:#5f8576;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
+.best-deal strong{font-size:23px;color:#285c4b}
+.best-deal span{font-size:11px;color:#638475}
+.offer-list{display:grid;gap:10px}
+.offer-row{border:1px solid #ece7e1;border-radius:16px;padding:13px 15px;display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:15px;transition:transform .2s}
+.offer-row:hover{transform:translateX(3px)}
+.offer-store{display:flex;align-items:center;gap:11px;min-width:0}
+.store-dot{width:36px;height:36px;border-radius:12px;background:#eff3f9;color:#56779e;display:grid;place-items:center;font-weight:800;font-family:Georgia,serif;flex-shrink:0}
+.offer-store strong{font-size:12px;display:block}
+.offer-store small{font-size:10px;color:#9aa5b0}
+.offer-price{font-size:17px;font-weight:800;white-space:nowrap}
+.offer-row.best{border-color:#c9e0d4;background:#f8fcf9}
+.best-label{font-size:9px;color:#33745d;background:#e2f1e8;border-radius:30px;padding:4px 8px;font-weight:800;display:inline-block;margin-top:4px}
+.empty-state{text-align:center;padding:46px 20px;color:#8595a7}
+.empty-state .empty-icon{width:68px;height:68px;border-radius:24px;background:#eaf0f8;display:grid;place-items:center;font-size:28px;margin:0 auto 14px}
+.empty-state h3{font-family:Georgia,serif;color:var(--ink);font-size:21px;margin:0 0 7px}
+.empty-state p{font-size:12px;max-width:340px;margin:0 auto 15px;line-height:1.5}
+
+.ai-layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);gap:17px;align-items:start}
+.chat-panel{padding:0;overflow:hidden;display:flex;flex-direction:column;min-height:500px}
+.chat-head{background:linear-gradient(110deg,#e2eafa,#d3e0f1);padding:18px 22px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #d2deed}
+.bot-avatar{width:44px;height:44px;border-radius:16px;background:#fffdfa;display:grid;place-items:center;font-size:24px;box-shadow:0 4px 12px rgba(40,65,98,.08)}
+.chat-head h2{font-family:Georgia,serif;font-size:20px;margin:0 0 3px}
+.chat-head small{font-size:10px;color:#6983a4}
+.online-dot{margin-left:auto;width:8px;height:8px;border-radius:50%;background:#58a184;box-shadow:0 0 0 4px rgba(88,161,132,.18);animation:pulse 1.8s infinite}
+.chat-messages{padding:22px;display:flex;flex-direction:column;gap:13px;flex:1;max-height:370px;overflow:auto;background:linear-gradient(180deg,#fffdfa,#fbf8f3)}
+.message{max-width:86%;border-radius:17px;padding:12px 14px;font-size:12px;line-height:1.55;box-shadow:0 3px 10px rgba(37,59,86,.035);animation:msgPop .26s cubic-bezier(.22,1,.36,1)}
+@keyframes msgPop{from{opacity:0;transform:translateY(8px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.message.bot{align-self:flex-start;background:#e8eef8;border-bottom-left-radius:5px;color:#385a80}
+.message.user{align-self:flex-end;background:var(--ink);color:white;border-bottom-right-radius:5px}
+.typing-dots{display:inline-flex;gap:4px;align-items:center;padding:4px 2px}
+.typing-dots span{width:6px;height:6px;border-radius:50%;background:#58779c;animation:bounceDot 1.2s infinite ease-in-out}
+.typing-dots span:nth-child(2){animation-delay:.18s}
+.typing-dots span:nth-child(3){animation-delay:.36s}
+@keyframes bounceDot{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-5px)}}
+.suggestions{display:flex;flex-wrap:wrap;gap:7px;padding:0 20px 15px;background:#fffdfa}
+.suggestion{border:1px solid #dce5f0;background:#f7f9fc;color:#537398;border-radius:99px;padding:8px 11px;font-size:10px;font-weight:650;transition:all .18s}
+.suggestion:hover{background:#e7eef8;color:var(--ink);transform:translateY(-1px)}
+.chat-input{display:flex;gap:8px;padding:14px 16px;border-top:1px solid #eee8e1;background:#fffdfa}
+.chat-input input{flex:1;min-width:0;height:42px;border:1px solid #e5e0da;border-radius:99px;padding:0 15px;background:#fcfaf7}
+.send-btn{width:42px;height:42px;border:0;border-radius:50%;background:var(--ink);color:white;font-size:18px;transition:transform .2s}
+.send-btn:hover{transform:scale(1.08)}
+.preference-card h3{font-family:Georgia,serif;font-size:20px;margin:0 0 5px}
+.preference-card>p{font-size:11px;color:#8c9aaa;line-height:1.5;margin-bottom:16px}
+.form-field{margin:0 0 12px}
+.form-field label{display:block;font-size:10px;color:#71839a;font-weight:750;margin:0 0 6px}
+.form-field input,.form-field select,.form-field textarea{width:100%;border:1px solid #e6e1dc;border-radius:11px;height:39px;padding:0 11px;background:#fffdfa;color:var(--ink)}
+.form-field textarea{height:76px;padding:10px;resize:vertical}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+.profile-hero{display:flex;align-items:center;gap:16px;padding:22px;background:linear-gradient(110deg,#e7edf7,#d9e4f2);border:1px solid #d3deec;border-radius:24px;margin-bottom:18px}
+.profile-avatar{width:66px;height:66px;border-radius:22px;background:#fffdfa;display:grid;place-items:center;font-family:Georgia,serif;font-size:25px;color:#6f8eb4;box-shadow:0 6px 16px rgba(40,65,98,.08)}
+.profile-hero h2{font-family:Georgia,serif;font-size:22px;margin:0 0 4px}
+.profile-hero p{margin:0;color:#7185a0;font-size:11px}
+.profile-hero .btn{margin-left:auto}
+.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.profile-link{width:100%;border:0;border-bottom:1px solid #f0ebe5;background:transparent;padding:14px 2px;display:flex;align-items:center;gap:12px;text-align:left;color:var(--ink);transition:transform .18s}
+.profile-link:hover{transform:translateX(3px)}
+.profile-link:last-child{border-bottom:0}
+.profile-link .link-icon{width:34px;height:34px;border-radius:12px;background:#edf2fa;display:grid;place-items:center;color:#567ca8}
+.profile-link span:nth-child(2){font-size:12px;font-weight:650;flex:1}
+.profile-link small{display:block;font-size:10px;color:#91a0af;font-weight:400;margin-top:3px}
+.arrow{color:#8ea0b3;font-size:19px}
+
+.premium-banner{border-radius:22px;background:linear-gradient(110deg,#dce7f6,#c5d5eb);border:1px solid #c9d8eb;padding:22px;display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:18px}
+.premium-banner h3{font-family:Georgia,serif;font-size:22px;margin:0 0 6px}
+.premium-banner p{font-size:11px;color:#617c9e;margin:0 0 12px;max-width:520px;line-height:1.5}
+.premium-star{font-size:46px;color:#7899c5;flex-shrink:0;animation:spinStar 12s linear infinite}
+
+.bottom-nav{display:none;background:rgba(255,253,250,.96);backdrop-filter:blur(16px);border:1px solid #e8e1d9;border-radius:22px;box-shadow:0 10px 35px rgba(26,52,82,.16);padding:6px 4px;justify-content:space-around}
+.bottom-nav .nav-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 4px;flex:1;text-align:center;font-size:9px;border-radius:14px}
+.bottom-nav .nav-btn:hover{transform:none}
+.bottom-nav .nav-btn.active{box-shadow:none}
+
+.overlay{position:fixed;inset:0;background:rgba(19,38,62,.38);backdrop-filter:blur(4px);z-index:50;display:flex;justify-content:flex-end;align-items:stretch;animation:fadeOverlay .2s ease}
+@keyframes fadeOverlay{from{opacity:0}to{opacity:1}}
+.drawer{width:min(440px,100%);background:var(--cream);height:100%;padding:25px;overflow:auto;box-shadow:-15px 0 45px rgba(17,38,65,.18);animation:slideIn .26s cubic-bezier(.16,1,.3,1)}
+@keyframes slideIn{from{transform:translateX(32px);opacity:.6}to{transform:translateX(0);opacity:1}}
+.modal-wrap{align-items:center;justify-content:center;padding:18px}
+.modal{width:min(560px,100%);max-height:92vh;overflow:auto;background:var(--cream);border-radius:25px;padding:25px;box-shadow:0 25px 70px rgba(13,32,57,.25);animation:pop .24s cubic-bezier(.16,1,.3,1)}
+@keyframes pop{from{transform:translateY(14px) scale(.97);opacity:.6}to{transform:translateY(0) scale(1);opacity:1}}
+.modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:18px}
+.modal-head h2{font-family:Georgia,serif;font-size:24px;margin:0 0 5px}
+.modal-head p{font-size:11px;color:#8b99a8;margin:0;line-height:1.5}
+.close-btn{height:34px;width:34px;border:1px solid #e5ded6;background:#fffdfa;border-radius:50%;color:#6f8092;font-size:18px;flex-shrink:0;transition:transform .2s}
+.close-btn:hover{transform:rotate(90deg);background:#f2f5fa}
+.cart-line{display:grid;grid-template-columns:64px 1fr auto;gap:12px;padding:13px 0;border-bottom:1px solid #eee8e1;align-items:center}
+.cart-thumb{height:62px;border-radius:13px;background:#e9eff8;display:grid;place-items:center;font-size:29px}
+.cart-line strong{display:block;font-size:12px;margin-bottom:3px}
+.cart-line small{font-size:10px;color:#8d9aaa}
+.qty-control{display:flex;align-items:center;gap:8px;margin-top:8px}
+.qty-control button{width:23px;height:23px;border:1px solid #e1e5eb;background:#fff;border-radius:50%;color:var(--ink)}
+.qty-control span{font-size:11px;font-weight:700}
+.cart-line-price{font-size:12px;font-weight:800;white-space:nowrap}
+.cart-summary{border-top:1px solid #e8e1d9;margin-top:16px;padding-top:16px}
+.summary-row{display:flex;justify-content:space-between;gap:12px;font-size:12px;color:#7e8fa2;margin:8px 0}
+.summary-row.total{font-size:17px;color:var(--ink);font-weight:800;padding-top:9px;border-top:1px dashed #ded8d0;margin-top:13px}
+.toast{position:fixed;z-index:80;bottom:26px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#17385f;color:#fff;border-radius:99px;padding:12px 18px;font-size:12px;box-shadow:0 10px 25px rgba(14,36,63,.22);transition:.24s cubic-bezier(.22,1,.36,1);white-space:nowrap;max-width:90vw}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.detail-art{height:185px;border-radius:18px;display:grid;place-items:center;font-size:82px;background:linear-gradient(145deg,#eaf0f8,#d7e2f1);margin-bottom:16px}
+.order-success{text-align:center;padding:20px 10px}
+.order-success .success-icon{width:76px;height:76px;border-radius:50%;display:grid;place-items:center;background:#e5f2eb;color:#398064;font-size:35px;margin:0 auto 16px;animation:popHeart .4s ease}
+.order-success h2{font-family:Georgia,serif;font-size:27px;margin-bottom:7px}
+.order-success p{color:#8493a3;font-size:12px;line-height:1.6;max-width:350px;margin:0 auto 16px}
+.track-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0 20px;text-align:center}
+.track-step{background:#fff;border:1px solid #e4ebf5;border-radius:14px;padding:10px 8px;font-size:10px;color:var(--muted)}
+.track-step.done{background:#e9f3ef;border-color:#c6e2d5;color:#285c4b;font-weight:700}
+
+@media(max-width:1050px){
+  .layout{grid-template-columns:205px minmax(0,1fr);gap:18px}
+  .product-grid,.mall-grid,.reels-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero{min-height:260px}.hero-copy{padding:29px}
+}
+@media(max-width:760px){
+  .topbar{height:auto;padding:9px 14px 10px;gap:7px;flex-wrap:wrap}
+  .brand{min-width:0}
+  .brand-name{font-size:18px}
+  .brand-tag{display:none}
+  .search-wrap{display:block;order:4;flex:0 0 100%;width:100%;max-width:none;height:36px}
+  .search-wrap svg{top:9px}
+  .layout{display:block;padding:16px 14px 100px}
+  .sidebar{display:none}
+  .content{max-width:none}
+  .hero{grid-template-columns:1fr;min-height:0}
+  .hero-copy{padding:24px 22px 10px}
+  .hero h1{font-size:33px}
+  .hero-art{min-height:175px}
+  .hero-gift-svg{width:170px;height:170px}
+  .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .product-art{height:132px}
+  .promo-row,.ai-layout,.profile-grid,.mall-grid,.reels-grid,.team-grid,.store-badges,.school-meta-grid,.city-grid{grid-template-columns:1fr}
+  .bottom-nav{display:flex;position:fixed;z-index:30;left:10px;right:10px;bottom:10px}
+  .compare-top{grid-template-columns:1fr}.select{width:100%}
+  .offer-row{grid-template-columns:1fr auto;gap:8px}.offer-row .offer-btn{grid-column:1/-1;width:100%}
+  .best-deal{align-items:flex-start;flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="ios-bar">
+    <span>9:41</span>
+    <div class="dynamic-island"></div>
+    <span>5G 100%</span>
+  </div>
+
+  <div class="deal-ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <div class="ticker-item">✦ <span>ÁGORA MALL:</span> Zara, Bershka, Pull &amp; Bear, Tommy Hilfiger &amp; Nike up to 30% OFF</div>
+      <div class="ticker-item">✦ <span>BLUEMALL:</span> Polo Ralph Lauren, Psycho Bunny &amp; Calvin Klein + Code <strong>LINO20</strong></div>
+      <div class="ticker-item">✦ <span>GALERÍA 360:</span> Old Navy, American Eagle, Puma &amp; Crocs Express Deals</div>
+      <div class="ticker-item">✦ <span>SAMBIL &amp; MEGACENTRO:</span> Anthony's, KB, Skillus, Payless &amp; Sport Line</div>
+      <div class="ticker-item">✦ <span>PREMIUM $7.99/MO:</span> Fancy Fibbie AI + Cross-Brand Size Matcher</div>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Buy N' Save Home" data-nav="home">
+      <div class="brand-logo-wrap" title="Buy N' Save Logo">
+        <svg width="36" height="36" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="11" r="7.5" fill="#F6C84C" stroke="#D99B26" stroke-width="1.5"/>
+          <text x="32" y="14" text-anchor="middle" fill="#9A6408" font-size="9" font-weight="800" font-family="Georgia, serif">$</text>
+          <path d="M16 9L20 11M48 9L44 11M18 16L21 15M46 16L43 15" stroke="#B79872" stroke-width="2" stroke-linecap="round"/>
+          <rect x="14" y="21" width="36" height="6" rx="3" fill="#F2E6D8" stroke="#D6C4AE" stroke-width="1.2"/>
+          <rect x="26" y="23" width="12" height="2.2" rx="1.1" fill="#17385F"/>
+          <path d="M16 27H48V53C48 55.2 46.2 57 44 57H20C17.8 57 16 55.2 16 53V27Z" fill="#DCE6F5" fill-opacity="0.72" stroke="#8BA7C9" stroke-width="1.5"/>
+          <path d="M21 34H43M21 34V53M43 34V53" stroke="#17385F" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="21" cy="54" r="2.2" fill="#17385F"/><circle cx="43" cy="54" r="2.2" fill="#17385F"/>
+          <path d="M26 34L24 37H28L26 34Z" stroke="#17385F" stroke-width="1.3"/>
+          <path d="M22 37H30L31.5 41L29.5 42L29 40.5V48H23V40.5L22.5 42L20.5 41L22 37Z" fill="#FFF8EF" stroke="#D5C5B2" stroke-width="1"/>
+          <path d="M38 34L36 37H40L38 34Z" stroke="#17385F" stroke-width="1.3"/>
+          <path d="M36 37H40L42 49H34L36 37Z" fill="#4C77AA"/>
+          <rect x="14" y="55" width="36" height="5" rx="2.5" fill="#F2E6D8" stroke="#D6C4AE" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div>
+        <div class="brand-name">BUY N’ <span>SAVE</span></div>
+        <div class="brand-tag" id="brandTag">Love your style · Respect your budget</div>
+      </div>
+    </a>
+
+    <div class="search-wrap">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7.5"/><path d="m16.5 16.5 4 4"/></svg>
+      <input id="globalSearch" type="search" placeholder="Search brands, clothes, malls in DR..." aria-label="Search">
+    </div>
+
+    <div class="top-actions">
+      <button class="pill-toggle" id="langBtn" title="Switch language / Cambiar idioma">🌐 EN → ES</button>
+      <button class="pill-toggle" id="currBtn" title="Switch currency / Cambiar moneda">USD $</button>
+      <button class="pill-toggle" id="mobileToggleBtn" title="Toggle Mobile Presentation Mode">📱 Mobile</button>
+      <button class="location-pill" data-action="pick-city" id="locationButton" title="Change City / Cambiar Ciudad"><span>⌖</span> Santo Domingo <span>⌄</span></button>
+      <button class="icon-btn" data-action="cart" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8h12l1 12H5L6 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="layout" id="scrollContainer">
+    <aside class="sidebar" id="sidebarContainer"></aside>
+    <main class="content" id="mainView" aria-live="polite"></main>
+  </div>
+
+  <nav class="bottom-nav" id="mobileNav" aria-label="Mobile Navigation"></nav>
+  <div class="home-indicator"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div id="overlayRoot"></div>
+</div>
+
+<script>
+(() => {
+  'use strict';
+  const $ = (s, root=document) => root.querySelector(s);
+
+  const USD_RATE = 60;
+  const formatPrice = (usd) => {
+    if (state.currency === 'USD') return '$' + Number(usd).toFixed(2);
+    return 'RD$' + Math.round(Number(usd) * USD_RATE).toLocaleString('es-DO');
+  };
+
+  const citiesDR = [
+    { id: 'sd', name: 'Santo Domingo', sub: 'Distrito Nacional · Express 45m', fee: 2.50 },
+    { id: 'sde', name: 'Santo Domingo Este', sub: 'Zona Oriental · Megacentro / Coral', fee: 3.00 },
+    { id: 'sdn', name: 'Santo Domingo Norte', sub: 'Villa Mella · Colina Centro', fee: 3.25 },
+    { id: 'santiago', name: 'Santiago', sub: 'Ágora Santiago / Bella Terra', fee: 3.50 },
+    { id: 'puntacana', name: 'Punta Cana / Bávaro', sub: 'BlueMall Puntacana / Downtown', fee: 4.50 },
+    { id: 'laromana', name: 'La Romana', sub: 'Multiplaza / Casa de Campo', fee: 4.00 },
+    { id: 'sanpedro', name: 'San Pedro de Macorís', sub: 'Delivery Regional 24h', fee: 4.00 },
+    { id: 'puertoplata', name: 'Puerto Plata', sub: 'Playa Dorada / Centro', fee: 4.50 }
+  ];
+
+  const i18n = {
+    en: {
+      tag: 'Love your style · Respect your budget',
+      searchPh: 'Search Nike, Zara, Polo, Bershka, KB, Anthony’s or malls...',
+      yourSpace: 'Your Space',
+      navHome: 'Home',
+      navCompare: 'Compare Prices',
+      navMalls: 'DR Malls',
+      navAi: 'Fancy Fibbie AI',
+      navWish: 'My Wishlist',
+      navProfile: 'My Profile',
+      navInfo: 'App Info & Team',
+      premTitle: 'Your style, smarter.',
+      premDesc: 'AI stylist, cross-brand size matcher & personal colorimetry.',
+      premBtn: 'Meet Premium · $7.99 ✦',
+      sideFoot: 'Buy N’ Save · Academic Demo<br>Apparel, Shoes & Fashion Accessories Only ♡',
+      heroEyebrow: 'SMART FASHION PORTAL · DOMINICAN REPUBLIC',
+      heroTitle: 'Shop more,<br>save more <span class="hero-heart">♡</span>',
+      heroDesc: 'Compare clothing, shoes & accessory deals across DR malls. Organize outfits fast, apply creator codes, and get express delivery.',
+      heroCta: 'Explore Fashion Deals →',
+      catTitle: 'Shop by Fashion Category',
+      cats: ['All', 'Clothing', 'Shoes', 'Accessories'],
+      trending: 'Trending Fashion Deals ✨',
+      reelsTitle: 'Creator Style Spotlights & Reels',
+      reelsSub: 'Tap a creator lookbook to play micro-video & copy promo code',
+      mallsTitle: 'Dominican Republic Malls & Fashion Stores',
+      mallsSub: 'Tap any store badge to filter deals from that brand',
+      addCart: 'Add to Bag',
+      sponsored: '✦ Sponsored Ad',
+      bestPriceFrom: 'Best price found',
+      diffHigh: 'Potential savings',
+      compareHeadEyebrow: 'CROSS-STORE PRICE COMPARATOR',
+      compareHeadTitle: 'Compare fashion deals before buying.',
+      compareHeadDesc: 'Check exact brand prices across local stores and malls in DR.',
+      mallsHeadEyebrow: 'SHOPPING CENTERS DIRECTORY · DR',
+      mallsHeadTitle: 'Malls & Apparel Stores in DR.',
+      mallsHeadDesc: 'Filter fashion deals by shopping mall or tap any brand store below.',
+      aiHeadEyebrow: 'FANCY FIBBIE ✨ · PREMIUM PREVIEW ($7.99/MO)',
+      aiHeadTitle: 'Your personal AI fashion stylist.',
+      aiHeadDesc: 'Outfit matching based on your color palette, skin tone, hair, eyes, height & budget.',
+      wishHeadEyebrow: 'YOUR CURATED CLOSET',
+      wishHeadTitle: 'My Wishlist ♡',
+      wishHeadDesc: 'Save pieces you love across brands and check out together.',
+      profHeadEyebrow: 'YOUR ACCOUNT',
+      profHeadTitle: 'Hello, Sophia ♡',
+      profHeadDesc: 'Manage your orders, fit profile, and Buy N’ Save Premium membership.',
+      infoHeadEyebrow: 'PROJECT PRESENTATION · COLEGIO AMADOR',
+      infoHeadTitle: 'About Buy N’ Save & Team',
+      infoHeadDesc: 'Meet the student creators behind the digital platform and get the mobile app for iOS & Android.'
+    },
+    es: {
+      tag: 'Ama tu estilo · Respeta tu presupuesto',
+      searchPh: 'Busca Nike, Zara, Polo, Bershka, KB, Anthony’s o plazas...',
+      yourSpace: 'Tu Espacio',
+      navHome: 'Inicio',
+      navCompare: 'Comparar Precios',
+      navMalls: 'Plazas en RD',
+      navAi: 'Fancy Fibbie IA',
+      navWish: 'Mi Wishlist',
+      navProfile: 'Mi Perfil',
+      navInfo: 'Info App y Equipo',
+      premTitle: 'Tu estilo, más smart.',
+      premDesc: 'Asistente IA, comparador de tallas entre marcas y colorimetría.',
+      premBtn: 'Conocer Premium · $7.99 ✦',
+      sideFoot: 'Buy N’ Save · Demo Académica<br>Exclusivo Ropa, Zapatos y Accesorios ♡',
+      heroEyebrow: 'PORTAL DE MODA INTELIGENTE · REP. DOM.',
+      heroTitle: 'Compra más,<br>ahorra más <span class="hero-heart">♡</span>',
+      heroDesc: 'Compara ofertas de ropa, zapatos y accesorios en las plazas de RD. Organiza tus compras rápido y recibe con delivery.',
+      heroCta: 'Explorar Ofertas de Moda →',
+      catTitle: 'Explora por Categoría de Vestimenta',
+      cats: ['Todo', 'Ropa', 'Zapatos', 'Accesorios'],
+      trending: 'Tendencias en Moda ✨',
+      reelsTitle: 'Influencers & Micro-Videos Promocionales',
+      reelsSub: 'Haz clic en un lookbook para reproducir el video y copiar el código',
+      mallsTitle: 'Plazas Comerciales de RD y Tiendas de Ropa',
+      mallsSub: 'Haz clic en cualquier tienda para filtrar sus ofertas',
+      addCart: 'Añadir al carrito',
+      sponsored: '✦ Patrocinado',
+      bestPriceFrom: 'Mejor precio encontrado',
+      diffHigh: 'Ahorro potencial',
+      compareHeadEyebrow: 'COMPARADOR DE PRECIOS ENTRE TIENDAS',
+      compareHeadTitle: 'Compara ofertas de ropa antes de comprar.',
+      compareHeadDesc: 'Verifica el precio de cada marca en tiendas y plazas locales de RD.',
+      mallsHeadEyebrow: 'DIRECTORIO DE PLAZAS · REP. DOM.',
+      mallsHeadTitle: 'Plazas Comerciales y Tiendas de Ropa.',
+      mallsHeadDesc: 'Filtra ofertas por plaza comercial o haz clic en cualquier tienda.',
+      aiHeadEyebrow: 'FANCY FIBBIE ✨ · VISTA PREMIUM ($7.99/MES)',
+      aiHeadTitle: 'Tu asistente personal de estilo con IA.',
+      aiHeadDesc: 'Recomendaciones según tu paleta, tono de piel, cabello, ojos, estatura y presupuesto.',
+      wishHeadEyebrow: 'TU CLÓSET GUARDADO',
+      wishHeadTitle: 'Mi Wishlist ♡',
+      wishHeadDesc: 'Guarda tus prendas favoritas de distintas marcas y cómpralas juntas.',
+      profHeadEyebrow: 'TU CUENTA',
+      profHeadTitle: 'Hola, Sophia ♡',
+      profHeadDesc: 'Administra tus pedidos, medidas y membresía Buy N’ Save Premium.',
+      infoHeadEyebrow: 'PRESENTACIÓN ACADÉMICA · COLEGIO AMADOR',
+      infoHeadTitle: 'Acerca de Buy N’ Save y Equipo',
+      infoHeadDesc: 'Conoce a los estudiantes creadores de la plataforma y descarga la app móvil para iOS y Android.'
+    }
+  };
+
+  const mallsData = [
+    {
+      id: 'agora', name: 'Ágora Mall', zone: 'Av. John F. Kennedy, Santo Domingo',
+      stores: ['Zara', 'Bershka', 'Pull & Bear', 'Stradivarius', 'Tommy Hilfiger', 'American Eagle', 'Calvin Klein', 'Nike', 'Puma', 'Sport Line', 'Guess', 'Crocs', 'Aldo', 'Parfois']
+    },
+    {
+      id: 'bluemall', name: 'BlueMall Santo Domingo', zone: 'Av. Winston Churchill, Santo Domingo',
+      stores: ['Zara', 'Polo Ralph Lauren', 'Psycho Bunny', 'Calvin Klein', 'Tommy Hilfiger', 'Mango', 'Massimo Dutti', 'Bimba y Lola', 'Nike']
+    },
+    {
+      id: 'galeria360', name: 'Galería 360', zone: 'Av. John F. Kennedy, Santo Domingo',
+      stores: ['Old Navy', 'H&M', 'American Eagle', 'Columbia', 'Puma', 'Converse', 'Crocs', 'Payless', 'Sport Line', 'Gap']
+    },
+    {
+      id: 'sambil', name: 'Sambil Santo Domingo', zone: 'Av. John F. Kennedy, Santo Domingo',
+      stores: ['Anthony’s', 'KB', 'Skillus', 'Payless', 'Converse', 'Sport Line', 'Crocs', 'KOAJ', 'Gef']
+    },
+    {
+      id: 'megacentro', name: 'Megacentro', zone: 'Av. San Vicente de Paúl, Santo Domingo Este',
+      stores: ['Anthony’s', 'KB', 'Skillus', 'Payless', 'Sport Line', 'Converse', 'Crocs', 'Nike']
+    },
+    {
+      id: 'downtown', name: 'Downtown Center & Acrópolis', zone: 'Núñez de Cáceres / Churchill',
+      stores: ['Guess', 'Tommy Hilfiger', 'Columbia', 'Psycho Bunny', 'Polo Ralph Lauren', 'Studio F', 'Steve Madden']
+    }
+  ];
+
+  const products = [
+    {
+      id: 1, brand: 'ZARA', name: 'Ribbed Knit Navy Sweater', nameEs: 'Suéter Tejido Ribbed Marino',
+      catEn: 'Clothing', catEs: 'Ropa', emoji: '🧥', tone: 'dark',
+      store: 'Zara · Ágora Mall', mall: 'Ágora Mall', sponsored: true,
+      offers: [
+        { store: 'Zara (Ágora Mall)', price: 28.99, old: 39.99, delivery: 'Same-day Express' },
+        { store: 'Zara (BlueMall)', price: 31.50, old: 39.99, delivery: '1–2 days' },
+        { store: 'Bershka (Ágora Mall)', price: 27.50, old: 36.00, delivery: 'Same-day Express' }
+      ]
+    },
+    {
+      id: 2, brand: 'NIKE', name: 'Air Force 1 Classic White Sneakers', nameEs: 'Tenis Nike Air Force 1 Clásicos',
+      catEn: 'Shoes', catEs: 'Zapatos', emoji: '👟', tone: 'sand',
+      store: 'Nike · Ágora Mall', mall: 'Ágora Mall', sponsored: true,
+      offers: [
+        { store: 'Nike Store (Ágora Mall)', price: 89.99, old: 115.00, delivery: 'Same-day Express' },
+        { store: 'Sport Line (Galería 360)', price: 92.50, old: 115.00, delivery: 'Same-day Express' },
+        { store: 'Anthony’s (Sambil)', price: 94.00, old: 118.00, delivery: '1–2 days' }
+      ]
+    },
+    {
+      id: 3, brand: 'POLO RALPH LAUREN', name: 'Classic Fit Oxford Polo Shirt', nameEs: 'Poloshirt Clásico de Algodón',
+      catEn: 'Clothing', catEs: 'Ropa', emoji: '👕', tone: 'lilac',
+      store: 'Polo Ralph Lauren · BlueMall', mall: 'BlueMall Santo Domingo', sponsored: true,
+      offers: [
+        { store: 'Polo Ralph Lauren (BlueMall)', price: 68.00, old: 95.00, delivery: 'Same-day Express' },
+        { store: 'Anthony’s (Sambil)', price: 64.99, old: 89.00, delivery: '1–2 days' },
+        { store: 'Tommy Hilfiger (Ágora Mall)', price: 59.99, old: 82.00, delivery: 'Same-day Express' }
+      ]
+    },
+    {
+      id: 4, brand: 'BERSHKA', name: 'Baggy Cargo Wide-Leg Jeans', nameEs: 'Jeans Cargo Anchos Tiro Alto',
+      catEn: 'Clothing', catEs: 'Ropa', emoji: '👖', tone: 'dark',
+      store: 'Bershka · Ágora Mall', mall: 'Ágora Mall', sponsored: false,
+      offers: [
+        { store: 'Bershka (Ágora Mall)', price: 29.99, old: 42.00, delivery: 'Same-day Express' },
+        { store: 'Pull & Bear (Ágora Mall)', price: 31.50, old: 42.00, delivery: 'Same-day Express' },
+        { store: 'American Eagle (Galería 360)', price: 38.00, old: 49.99, delivery: '1–2 days' }
+      ]
+    },
+    {
+      id: 5, brand: 'PSYCHO BUNNY', name: 'Pima Cotton Embroidered Tee', nameEs: 'Camiseta Algodón Pima Bordada',
+      catEn: 'Clothing', catEs: 'Ropa', emoji: '👚', tone: 'pink',
+      store: 'Psycho Bunny · BlueMall', mall: 'BlueMall Santo Domingo', sponsored: false,
+      offers: [
+        { store: 'Psycho Bunny (BlueMall)', price: 54.00, old: 72.00, delivery: 'Same-day Express' },
+        { store: 'Calvin Klein (Ágora Mall)', price: 46.99, old: 65.00, delivery: 'Same-day Express' }
+      ]
+    },
+    {
+      id: 6, brand: 'GUESS', name: 'Quilted Logo Mini Shoulder Bag', nameEs: 'Bolso de Hombro Acolchado Guess',
+      catEn: 'Accessories', catEs: 'Accesorios', emoji: '👜', tone: 'pink',
+      store: 'Guess · Ágora Mall', mall: 'Ágora Mall', sponsored: true,
+      offers: [
+        { store: 'Guess (Ágora Mall)', price: 62.00, old: 88.00, delivery: 'Same-day Express' },
+        { store: 'Calvin Klein (BlueMall)', price: 66.50, old: 92.00, delivery: '1–2 days' },
+        { store: 'KB (Sambil)', price: 34.99, old: 48.00, delivery: 'Same-day Express' }
+      ]
+    },
+    {
+      id: 7, brand: 'PUMA', name: 'Palermo Vintage Suede Sneakers', nameEs: 'Tenis Puma Palermo Gamuza',
+      catEn: 'Shoes', catEs: 'Zapatos', emoji: '👟', tone: 'mint',
+      store: 'Puma · Galería 360', mall: 'Galería 360', sponsored: false,
+      offers: [
+        { store: 'Puma Store (Galería 360)', price: 69.99, old: 90.00, delivery: 'Same-day Express' },
+        { store: 'Sport Line (Ágora Mall)', price: 72.00, old: 90.00, delivery: 'Same-day Express' },
+        { store: 'Converse (Galería 360)', price: 58.00, old: 75.00, delivery: '1–2 days' }
+      ]
+    },
+    {
+      id: 8, brand: 'OLD NAVY', name: 'Linen-Blend Resort Button Shirt', nameEs: 'Camisa de Lino Casual Resort',
+      catEn: 'Clothing', catEs: 'Ropa', emoji: '👔', tone: 'sand',
+      store: 'Old Navy · Galería 360', mall: 'Galería 360', sponsored: false,
+      offers: [
+        { store: 'Old Navy (Galería 360)', price: 24.99, old: 36.99, delivery: 'Same-day Express' },
+        { store: 'American Eagle (Ágora Mall)', price: 32.00, old: 44.99, delivery: '1–2 days' },
+        { store: 'Skillus (Sambil)', price: 19.99, old: 28.00, delivery: 'Same-day Express' }
+      ]
+    },
+    {
+      id: 9, brand: 'CROCS', name: 'Classic Platform Clogs + Jibbitz', nameEs: 'Zuecos Plataforma + Pines Jibbitz',
+      catEn: 'Shoes', catEs: 'Zapatos', emoji: '🩴', tone: 'lilac',
+      store: 'Crocs · Galería 360', mall: 'Galería 360', sponsored: false,
+      offers: [
+        { store: 'Crocs Store (Galería 360)', price: 39.99, old: 54.99, delivery: 'Same-day Express' },
+        { store: 'Payless (Sambil)', price: 29.99, old: 39.99, delivery: 'Same-day Express' },
+        { store: 'Anthony’s (Megacentro)', price: 41.50, old: 54.99, delivery: '1–2 days' }
+      ]
+    },
+    {
+      id: 10, brand: 'COLUMBIA', name: 'Water-Resistant Windbreaker Jacket', nameEs: 'Chaqueta Rompevientos Ligera',
+      catEn: 'Clothing', catEs: 'Ropa', emoji: '🧥', tone: 'mint',
+      store: 'Columbia · Galería 360', mall: 'Galería 360', sponsored: false,
+      offers: [
+        { store: 'Columbia (Galería 360)', price: 58.00, old: 80.00, delivery: 'Same-day Express' },
+        { store: 'Tommy Hilfiger (Ágora Mall)', price: 74.00, old: 98.00, delivery: '1–2 days' }
+      ]
+    },
+    {
+      id: 11, brand: 'CALVIN KLEIN', name: 'Monogram Leather Belt & Cardholder', nameEs: 'Correa de Piel y Tarjetero CK',
+      catEn: 'Accessories', catEs: 'Accesorios', emoji: '🧣', tone: 'dark',
+      store: 'Calvin Klein · BlueMall', mall: 'BlueMall Santo Domingo', sponsored: false,
+      offers: [
+        { store: 'Calvin Klein (BlueMall)', price: 42.00, old: 60.00, delivery: 'Same-day Express' },
+        { store: 'Tommy Hilfiger (Ágora Mall)', price: 39.99, old: 55.00, delivery: 'Same-day Express' },
+        { store: 'KB (Megacentro)', price: 22.50, old: 32.00, delivery: '1–2 days' }
+      ]
+    },
+    {
+      id: 12, brand: 'CONVERSE', name: 'Chuck Taylor All Star Lift High', nameEs: 'Tenis Converse Plataforma Altos',
+      catEn: 'Shoes', catEs: 'Zapatos', emoji: '👟', tone: 'pink',
+      store: 'Converse · Galería 360', mall: 'Galería 360', sponsored: false,
+      offers: [
+        { store: 'Converse (Galería 360)', price: 55.00, old: 75.00, delivery: 'Same-day Express' },
+        { store: 'Sport Line (Sambil)', price: 57.50, old: 75.00, delivery: 'Same-day Express' },
+        { store: 'Payless (Megacentro)', price: 34.99, old: 45.00, delivery: '1–2 days' }
+      ]
+    }
+  ];
+
+  const reels = [
+    {
+      id: 'reel1', handle: '@camila.rdstyle', followers: '84K', mall: 'Ágora Mall',
+      brand: 'ZARA, BERSHKA & NIKE', title: '3 Capsule Outfits & Sneakers under $95',
+      titleEs: '3 Outfits Cápsula y Tenis por menos de $95', code: 'AGORA15', discount: '15% OFF',
+      emoji: '🧥', theme: 'r1', productId: 1
+    },
+    {
+      id: 'reel2', handle: '@valeria.looksdo', followers: '52K', mall: 'BlueMall',
+      brand: 'POLO, GUESS & CALVIN KLEIN', title: 'Luxury Resort & Accessories Haul',
+      titleEs: 'Haul Resort y Accesorios en BlueMall', code: 'LINO20', discount: '20% OFF',
+      emoji: '👜', theme: 'r2', productId: 6
+    },
+    {
+      id: 'reel3', handle: '@mateo.streetwear', followers: '67K', mall: 'Galería 360',
+      brand: 'PUMA, OLD NAVY & CROCS', title: 'Weekend Streetwear & Sneaker Picks',
+      titleEs: 'Favoritos Urbanos de Tenis y Ropa', code: 'SAVE360', discount: '12% OFF',
+      emoji: '👟', theme: 'r3', productId: 7
+    }
+  ];
+
+  const defaultTeam = [
+    { name: 'Sophia Pérez', role: 'Project Lead & UX/UI Design', roleEs: 'Líder de Proyecto y Diseño UX/UI', idCode: 'Colegio Amador · 2do de Secundaria' },
+    { name: 'Claudio Volquez', role: 'Business Strategy & Mall Partnerships', roleEs: 'Estrategia de Negocio y Alianzas con Plazas', idCode: 'Colegio Amador · 2do de Secundaria' },
+    { name: 'Lorena Bryson', role: 'Digital Marketing & Creator Campaigns', roleEs: 'Marketing Digital y Campañas con Influencers', idCode: 'Colegio Amador · 2do de Secundaria' },
+    { name: 'Adrianna Sanz', role: 'Product Operations & AI Styling Concept', roleEs: 'Operaciones de Producto y Concepto IA', idCode: 'Colegio Amador · 2do de Secundaria' }
+  ];
+
+  const safeLoad = (key, fallback) => { try { const v = JSON.parse(localStorage.getItem(key)); return v ?? fallback; } catch { return fallback; } };
+
+  const state = {
+    lang: 'en',
+    currency: 'USD',
+    mobileSim: false,
+    page: 'home',
+    category: 'All',
+    selectedMall: 'All Malls',
+    search: '',
+    cityId: safeLoad('bns_city_id', 'sd'),
+    favorites: safeLoad('bns_fashion_favs', [1, 2, 6]),
+    cart: safeLoad('bns_fashion_cart', [{ id: 1, qty: 1 }]),
+    team: safeLoad('bns_team_v3', defaultTeam),
+    preferences: safeLoad('bns_fashion_prefs', {
+      palette: 'Cool Neutrals & Soft Blues',
+      skin: 'Medium / Olive',
+      undertone: 'Cool',
+      hairType: 'Wavy',
+      hair: 'Dark Brown',
+      eyes: 'Brown',
+      height: '165 cm',
+      budget: '$75',
+      fit: 'Regular'
+    }),
+    orders: safeLoad('bns_fashion_orders', []),
+    chat: [
+      { who: 'bot', text: 'Hi! I’m Fancy Fibbie ✨🎀 Your personal AI fashion stylist. Tell me your occasion, preferred brand (Nike, Zara, Polo, Bershka, Guess...), or budget, and I’ll build an outfit from DR malls!' }
+    ],
+    isTyping: false,
+    compareId: 2,
+    toastTimer: null
+  };
+
+  const main = $('#mainView');
+  const overlayRoot = $('#overlayRoot');
+  const t = () => i18n[state.lang];
+  const currentCity = () => citiesDR.find(c => c.id === state.cityId) || citiesDR[0];
+
+  function persist() {
+    try {
+      localStorage.setItem('bns_city_id', JSON.stringify(state.cityId));
+      localStorage.setItem('bns_fashion_favs', JSON.stringify(state.favorites));
+      localStorage.setItem('bns_fashion_cart', JSON.stringify(state.cart));
+      localStorage.setItem('bns_fashion_prefs', JSON.stringify(state.preferences));
+      localStorage.setItem('bns_fashion_orders', JSON.stringify(state.orders));
+      localStorage.setItem('bns_team_v3', JSON.stringify(state.team));
+    } catch {}
+  }
+
+  function toast(message) {
+    const el = $('#toast');
+    el.textContent = message;
+    el.classList.add('show');
+    clearTimeout(state.toastTimer);
+    state.toastTimer = setTimeout(() => el.classList.remove('show'), 2500);
+  }
+
+  function productById(id) { return products.find(p => p.id === Number(id)); }
+  function pName(p) { return state.lang === 'en' ? p.name : p.nameEs; }
+  function pCat(p) { return state.lang === 'en' ? p.catEn : p.catEs; }
+  function cartCount() { return state.cart.reduce((n, item) => n + item.qty, 0); }
+  function cartSubtotal() {
+    return state.cart.reduce((n, item) => {
+      const p = productById(item.id);
+      return n + (p ? p.offers[0].price * item.qty : 0);
+    }, 0);
+  }
+
+  function renderChrome(bumpCart = false) {
+    const tr = t();
+    const city = currentCity();
+    $('#brandTag').textContent = tr.tag;
+    $('#globalSearch').placeholder = tr.searchPh;
+    $('#langBtn').textContent = state.lang === 'en' ? '🌐 EN → ES' : '🌐 ES → EN';
+    $('#currBtn').textContent = state.currency === 'USD' ? 'USD $' : 'DOP RD$';
+    $('#mobileToggleBtn').classList.toggle('active', state.mobileSim);
+    $('#mobileToggleBtn').textContent = state.mobileSim ? '🖥 Desktop' : '📱 Mobile';
+    $('#locationButton').innerHTML = `<span>⌖</span> ${city.name} <span>⌄</span>`;
+    document.body.classList.toggle('mobile-sim', state.mobileSim);
+
+    const badge = $('#cartCount');
+    badge.textContent = cartCount();
+    if (bumpCart) {
+      badge.classList.remove('bump');
+      void badge.offsetWidth;
+      badge.classList.add('bump');
+      setTimeout(() => badge.classList.remove('bump'), 350);
+    }
+
+    const navItems = [
+      { id: 'home', label: tr.navHome, icon: '<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10Z"/>' },
+      { id: 'compare', label: tr.navCompare, icon: '<path d="M4 5h16M4 12h16M4 19h16"/><path d="M8 3v4m8 3v4m-8 3v4"/>' },
+      { id: 'malls', label: tr.navMalls, icon: '<path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/>', badge: '6' },
+      { id: 'ai', label: tr.navAi, icon: '<path d="m12 2 1.5 6.5L20 10l-6.5 1.5L12 18l-1.5-6.5L4 10l6.5-1.5L12 2Z"/>', badge: 'AI' },
+      { id: 'wishlist', label: tr.navWish, icon: '<path d="M20.8 8.8c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8.8 2.8Z"/>', badge: state.favorites.length },
+      { id: 'profile', label: tr.navProfile, icon: '<circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/>' },
+      { id: 'info', label: tr.navInfo, icon: '<circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/>' }
+    ];
+
+    $('#sidebarContainer').innerHTML = `
+      <div class="side-card">
+        <div class="side-label">${tr.yourSpace}</div>
+        <nav class="nav-list">
+          ${navItems.map(n => `
+            <button class="nav-btn ${state.page === n.id ? 'active' : ''}" data-nav="${n.id}">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">${n.icon}</svg>
+              ${n.label}
+              ${n.badge !== undefined ? `<span class="nav-count">${n.badge}</span>` : ''}
+            </button>
+          `).join('')}
+        </nav>
+      </div>
+      <div class="premium-card">
+        <span class="price-badge">$7.99 / mo</span>
+        <h3>${tr.premTitle}</h3>
+        <p>${tr.premDesc}</p>
+        <button class="btn small" data-action="premium">${tr.premBtn}</button>
+      </div>
+      <div class="side-bottom">${tr.sideFoot}</div>
+    `;
+
+    $('#mobileNav').innerHTML = [navItems[0], navItems[1], navItems[3], navItems[4], navItems[6]].map(n => `
+      <button class="nav-btn ${state.page === n.id ? 'active' : ''}" data-nav="${n.id}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">${n.icon}</svg>
+        ${n.id === 'info' ? 'Info' : n.label.split(' ')[0]}
+      </button>
+    `).join('');
+  }
+
+  function go(page) {
+    state.page = page;
+    render();
+    if (state.mobileSim) {
+      $('#scrollContainer').scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+
+  function pageHead(kicker, title, desc, extra = '') {
+    return `<div class="page-head"><div><div class="eyebrow">${kicker}</div><h1>${title}</h1><p>${desc}</p></div>${extra}</div>`;
+  }
+
+  function productCard(p) {
+    const tr = t();
+    const best = Math.min(...p.offers.map(o => o.price));
+    const old = Math.max(...p.offers.map(o => o.old || o.price));
+    const save = Math.max(0, Math.round((old - best) / old * 100));
+    const fav = state.favorites.includes(p.id);
+    return `<article class="product-card">
+      <div class="product-art ${p.tone}">
+        ${p.sponsored ? `<span class="sponsor-tag">${tr.sponsored}</span>` : ''}
+        <span class="emoji">${p.emoji}</span>
+        <span class="brand-stamp">${p.brand}</span>
+        <button class="heart-btn ${fav ? 'active' : ''}" data-action="favorite" data-id="${p.id}" aria-label="Wishlist">
+          <svg viewBox="0 0 24 24" fill="${fav ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="1.8"><path d="M20.8 8.8c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8.8 2.8Z"/></svg>
+        </button>
+      </div>
+      <div class="product-info">
+        <div class="brand-line">
+          <span class="brand-pill">${p.brand}</span>
+          <span class="mall-tag">📍 ${p.mall}</span>
+        </div>
+        <div class="product-title" title="${pName(p)}">${pName(p)}</div>
+        <div class="product-meta"><span>${pCat(p)} · ${p.offers.length} stores</span><span>★ 4.9</span></div>
+        <div class="price-row">
+          <div><span class="price">${formatPrice(best)}</span><span class="old-price">${formatPrice(old)}</span></div>
+          <span class="save-pill">-${save}%</span>
+        </div>
+        <div class="card-actions">
+          <button class="btn" data-action="add" data-id="${p.id}">${tr.addCart}</button>
+          <button class="btn ghost icon-only" data-action="compare-item" data-id="${p.id}" title="Compare prices">⇄</button>
+          <button class="btn ghost icon-only" data-action="details" data-id="${p.id}" title="Details">↗</button>
+        </div>
+      </div>
+    </article>`;
+  }
+
+  function renderHome() {
+    const tr = t();
+    const city = currentCity();
+    const catMap = { 'All': 'All', 'Todo': 'All', 'Clothing': 'Clothing', 'Ropa': 'Clothing', 'Shoes': 'Shoes', 'Zapatos': 'Shoes', 'Accessories': 'Accessories', 'Accesorios': 'Accessories' };
+    const normCat = catMap[state.category] || 'All';
+
+    const filtered = products.filter(p => {
+      const matchCat = normCat === 'All' || p.catEn === normCat;
+      const matchMall = state.selectedMall === 'All Malls' || p.mall.includes(state.selectedMall) || p.offers.some(o => o.store.includes(state.selectedMall));
+      const q = state.search.toLowerCase();
+      const matchSearch = !q || `${p.brand} ${p.name} ${p.nameEs} ${p.catEn} ${p.mall} ${p.offers.map(o => o.store).join(' ')}`.toLowerCase().includes(q);
+      return matchCat && matchMall && matchSearch;
+    });
+
+    return `
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">${tr.heroEyebrow} · ${city.name.toUpperCase()}</div>
+          <h1>${tr.heroTitle}</h1>
+          <p>${tr.heroDesc}</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn" data-action="explore">${tr.heroCta}</button>
+            <button class="btn ghost" data-action="premium">Premium $7.99/mo ✦</button>
+          </div>
+        </div>
+        <div class="hero-art">
+          <span class="spark s1">✦</span><span class="spark s2">✧</span><span class="spark s3">✦</span>
+          <svg class="hero-gift-svg" viewBox="0 0 260 250" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Buy N' Save Gift Box">
+            <defs>
+              <linearGradient id="boxSideL" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFF9F1"/><stop offset="100%" stop-color="#EEDCC6"/></linearGradient>
+              <linearGradient id="boxSideR" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F6E6D2"/><stop offset="100%" stop-color="#DFC8AD"/></linearGradient>
+              <linearGradient id="lidTop" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFFDF9"/><stop offset="100%" stop-color="#F2E2CE"/></linearGradient>
+              <linearGradient id="ribbonMain" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#89A8D3"/><stop offset="55%" stop-color="#5B80B2"/><stop offset="100%" stop-color="#3C5F8F"/></linearGradient>
+              <linearGradient id="ribbonDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4A6F9F"/><stop offset="100%" stop-color="#2E4E79"/></linearGradient>
+              <linearGradient id="coinGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FCE181"/><stop offset="100%" stop-color="#D99B26"/></linearGradient>
+            </defs>
+            <ellipse cx="132" cy="224" rx="76" ry="14" fill="#17385F" fill-opacity="0.12"/>
+            <g transform="translate(36, 48) rotate(-14)">
+              <circle cx="20" cy="20" r="18" fill="url(#coinGold)" stroke="#B87E14" stroke-width="2"/>
+              <circle cx="20" cy="20" r="13" stroke="#FFF3B8" stroke-width="1.2" stroke-opacity="0.8"/>
+              <text x="20" y="25" text-anchor="middle" fill="#8C5804" font-family="Georgia, serif" font-weight="800" font-size="16">$</text>
+            </g>
+            <path d="M56 118 L130 144 L130 218 L56 188 Z" fill="url(#boxSideL)" stroke="#DECAB3" stroke-width="1.2"/>
+            <path d="M204 118 L130 144 L130 218 L204 188 Z" fill="url(#boxSideR)" stroke="#D4BEA4" stroke-width="1.2"/>
+            <path d="M86 128 L104 134 L104 207 L86 200 Z" fill="url(#ribbonMain)"/>
+            <path d="M156 134 L174 128 L174 200 L156 207 Z" fill="url(#ribbonDark)"/>
+            <path d="M48 96 L130 72 L212 96 L130 124 Z" fill="url(#lidTop)" stroke="#E3D1BC" stroke-width="1.2"/>
+            <path d="M48 96 L130 124 L130 142 L48 114 Z" fill="url(#boxSideL)" stroke="#DECAB3" stroke-width="1.2"/>
+            <path d="M212 96 L130 124 L130 142 L212 114 Z" fill="url(#boxSideR)" stroke="#D4BEA4" stroke-width="1.2"/>
+            <path d="M82 86 L168 111 L152 116 L66 91 Z" fill="url(#ribbonMain)"/>
+            <path d="M178 86 L92 111 L108 116 L194 91 Z" fill="url(#ribbonMain)"/>
+            <path d="M82 108 L102 115 L102 133 L82 126 Z" fill="url(#ribbonMain)"/>
+            <path d="M158 115 L178 108 L178 126 L158 133 Z" fill="url(#ribbonDark)"/>
+            <path d="M118 98 C98 112, 74 124, 58 126 L70 134 L64 142 C84 138, 108 122, 124 104 Z" fill="url(#ribbonMain)"/>
+            <path d="M142 98 C162 112, 186 124, 202 126 L190 134 L196 142 C176 138, 152 122, 136 104 Z" fill="url(#ribbonDark)"/>
+            <path d="M124 92 C92 64, 62 72, 74 96 C82 110, 110 104, 125 96 Z" fill="url(#ribbonMain)" stroke="#4A6F9F" stroke-width="1"/>
+            <path d="M136 92 C168 64, 198 72, 186 96 C178 110, 150 104, 135 96 Z" fill="url(#ribbonMain)" stroke="#4A6F9F" stroke-width="1"/>
+            <path d="M126 88 C108 54, 126 42, 132 76 Z" fill="#9BB6DC"/>
+            <path d="M134 88 C152 54, 134 42, 128 76 Z" fill="#6F92C1"/>
+            <rect x="119" y="84" width="22" height="17" rx="7" fill="url(#ribbonDark)" stroke="#89A8D3" stroke-width="1.2"/>
+            <g transform="translate(152, 146) rotate(-18)">
+              <rect x="0" y="0" width="44" height="28" rx="6" fill="#FFFDF9" stroke="#D5C2AB" stroke-width="1.2"/>
+              <circle cx="7" cy="14" r="2.2" fill="#89A8D3"/>
+              <text x="25" y="13" text-anchor="middle" fill="#3C5F8F" font-family="Georgia, serif" font-weight="700" font-size="7.5">BUY N’</text>
+              <text x="25" y="22" text-anchor="middle" fill="#17385F" font-family="Georgia, serif" font-weight="700" font-size="8">SAVE</text>
+            </g>
+          </svg>
+          <div class="offer-bubble">Delivery: ${city.name}<strong>♡ Save up to 35%</strong></div>
+        </div>
+      </section>
+
+      <div class="section-row"><h2>${tr.catTitle}</h2><span class="demo-note">100% Apparel, Shoes & Accessories</span></div>
+      <div class="category-row">
+        ${tr.cats.map(c => `<button class="chip ${state.category === c ? 'active' : ''}" data-action="category" data-category="${c}">${c}</button>`).join('')}
+        ${state.selectedMall !== 'All Malls' ? `<button class="chip active" data-action="clear-search">📍 ${state.selectedMall} ×</button>` : ''}
+      </div>
+
+      <div class="section-row">
+        <h2>${tr.trending}</h2>
+        <span style="font-size:11px;color:#8293a6">${filtered.length} items</span>
+      </div>
+      ${filtered.length ? `<div class="product-grid">${filtered.map(productCard).join('')}</div>` : `<div class="panel empty-state"><div class="empty-icon">⌕</div><h3>No fashion matches</h3><p>Try another brand, mall, or reset filters.</p><button class="btn ghost small" data-action="clear-search">Reset filters</button></div>`}
+
+      <div class="section-row">
+        <div>
+          <h2>${tr.reelsTitle}</h2>
+          <small style="color:var(--muted);font-size:11px">${tr.reelsSub}</small>
+        </div>
+      </div>
+      <div class="reels-grid">
+        ${reels.map(r => `
+          <div class="reel-card" data-action="reel" data-reel="${r.id}">
+            <div class="reel-visual ${r.theme}">
+              <div class="reel-top">
+                <span class="reel-badge"><span class="reel-dot"></span> REEL · ${r.mall}</span>
+                <span class="reel-play">▶</span>
+              </div>
+              <div class="reel-center">
+                <span class="reel-emoji">${r.emoji}</span>
+              </div>
+              <div style="font-size:10px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;opacity:.92">${r.brand}</div>
+            </div>
+            <div class="reel-body">
+              <div class="reel-creator">
+                <div class="creator-ava">${r.handle[1].toUpperCase()}</div>
+                <div><strong>${r.handle}</strong><small>${r.followers} followers · Sponsored</small></div>
+              </div>
+              <p class="reel-caption">${state.lang === 'en' ? r.title : r.titleEs}</p>
+              <div class="reel-code"><span>Code: ${r.code}</span><span style="color:var(--green)">${r.discount}</span></div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="section-row">
+        <div>
+          <h2>${tr.mallsTitle}</h2>
+          <small style="color:var(--muted);font-size:11px">${tr.mallsSub}</small>
+        </div>
+        <button class="text-link" data-nav="malls">View all 6 malls →</button>
+      </div>
+      <div class="mall-grid">
+        ${mallsData.slice(0, 3).map(m => `
+          <div class="mall-card">
+            <div class="mall-head">
+              <div class="mall-icon">${m.name.slice(0, 2).toUpperCase()}</div>
+              <div><h3>${m.name}</h3><small>📍 ${m.zone}</small></div>
+            </div>
+            <div class="store-tags">${m.stores.map(s => `<button type="button" class="store-tag" data-action="filter-store" data-store="${s}">${s}</button>`).join('')}</div>
+            <button class="btn soft small" data-action="filter-mall" data-mall="${m.name}">Shop ${m.name} deals →</button>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="promo-row">
+        <div class="promo-panel">
+          <span class="deco">♡</span>
+          <div class="eyebrow">FOR FASHION BOUTIQUES & MALL STORES</div>
+          <h3>Promote your clothing brand in DR.</h3>
+          <p>Run sponsored placements, creator reels, and direct checkout inside Buy N’ Save.</p>
+          <button class="btn small" data-action="merchant">Register Store Ad →</button>
+        </div>
+        <div class="promo-panel blue-panel">
+          <span class="deco">✦</span>
+          <div class="eyebrow">BUY N’ SAVE PREMIUM · $7.99/MO</div>
+          <h3>Fancy Fibbie AI + Cross-Brand Size Match.</h3>
+          <p>Find your exact size across Zara, Mango & H&M plus colors matched to your skin, hair & eyes.</p>
+          <button class="btn small" data-action="premium">Explore Premium ($7.99) →</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderMalls() {
+    const tr = t();
+    return `${pageHead(tr.mallsHeadEyebrow, tr.mallsHeadTitle, tr.mallsHeadDesc)}
+      <div class="mall-grid">
+        ${mallsData.map(m => `
+          <div class="mall-card">
+            <div class="mall-head">
+              <div class="mall-icon">${m.name.slice(0, 2).toUpperCase()}</div>
+              <div><h3>${m.name}</h3><small>📍 ${m.zone}</small></div>
+            </div>
+            <div style="font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px">Participating Clothing & Shoe Stores</div>
+            <div class="store-tags">${m.stores.map(s => `<button type="button" class="store-tag" data-action="filter-store" data-store="${s}">${s}</button>`).join('')}</div>
+            <button class="btn small" data-action="filter-mall" data-mall="${m.name}">View Deals in ${m.name} →</button>
+          </div>
+        `).join('')}
+      </div>`;
+  }
+
+  function renderCompare() {
+    const tr = t();
+    const p = productById(state.compareId) || products[0];
+    const offers = [...p.offers].sort((a, b) => a.price - b.price);
+    const best = offers[0];
+    const max = Math.max(...offers.map(o => o.price));
+    const diff = max - best.price;
+
+    return `${pageHead(tr.compareHeadEyebrow, tr.compareHeadTitle, tr.compareHeadDesc)}
+      <div class="panel">
+        <div class="compare-top">
+          <div>
+            <label class="select-label" for="compareSelect">Select Clothing / Shoe / Accessory Item</label>
+            <select id="compareSelect" class="select">
+              ${products.map(x => `<option value="${x.id}" ${x.id === p.id ? 'selected' : ''}>[${x.brand}] ${pName(x)}</option>`).join('')}
+            </select>
+          </div>
+          <span class="brand-pill" style="font-size:12px;padding:8px 14px">Brand: ${p.brand}</span>
+        </div>
+        <div class="detail-art ${p.tone}">${p.emoji}</div>
+        <h2 style="font-family:Georgia,serif;font-size:23px;margin:0 0 4px">${p.brand} — ${pName(p)}</h2>
+        <p style="font-size:11px;color:#91a0ae;margin:0">${pCat(p)} · ${offers.length} DR mall stores compared</p>
+        <div class="best-deal">
+          <div><small>${tr.bestPriceFrom}</small><strong>${formatPrice(best.price)}</strong><span> at ${best.store}</span></div>
+          <div style="text-align:right"><small>${tr.diffHigh}</small><strong>${formatPrice(diff)}</strong><span> saved</span></div>
+        </div>
+        <div class="offer-list">
+          ${offers.map((o, i) => `
+            <div class="offer-row ${i === 0 ? 'best' : ''}">
+              <div class="offer-store">
+                <div class="store-dot">${p.brand.slice(0, 2)}</div>
+                <div><strong>${o.store}</strong><small>${o.delivery}</small>${i === 0 ? '<span class="best-label">★ Best Deal</span>' : ''}</div>
+              </div>
+              <div class="offer-price">${formatPrice(o.price)}</div>
+              <button class="btn small ${i === 0 ? '' : 'ghost'} offer-btn" data-action="add" data-id="${p.id}">${tr.addCart}</button>
+            </div>
+          `).join('')}
+        </div>
+      </div>`;
+  }
+
+  function renderChat() {
+    const msgs = state.chat.map(m => `<div class="message ${m.who === 'user' ? 'user' : 'bot'}">${m.text}</div>`).join('');
+    const typing = state.isTyping ? `<div class="message bot"><div class="typing-dots"><span></span><span></span><span></span></div></div>` : '';
+    return msgs + typing;
+  }
+
+  function renderAI() {
+    const tr = t();
+    const pr = state.preferences;
+    return `${pageHead(tr.aiHeadEyebrow, tr.aiHeadTitle, tr.aiHeadDesc)}
+      <div class="premium-banner">
+        <div>
+          <div class="eyebrow">BUY N’ SAVE PREMIUM · $7.99 / MONTH</div>
+          <h3>AI Colorimetry + Cross-Brand Size Matcher</h3>
+          <p>Customize your skin tone, undertone, hair type & color, eye color, height, and budget so Fancy Fibbie curates exact brand matches.</p>
+          <button class="btn small" data-action="premium">Unlock Premium ($7.99/mo) ✦</button>
+        </div>
+        <div class="premium-star">✦</div>
+      </div>
+      <div class="ai-layout">
+        <section class="panel chat-panel">
+          <div class="chat-head">
+            <div class="bot-avatar">🎀</div>
+            <div><h2>Fancy Fibbie AI</h2><small>Personal Fashion & Deal Assistant</small></div>
+            <span class="online-dot"></span>
+          </div>
+          <div class="chat-messages" id="chatMessages">${renderChat()}</div>
+          <div class="suggestions">
+            <button class="suggestion" data-prompt="Build me an Ágora Mall outfit with Nike & Zara">Ágora Mall outfit (Nike + Zara)</button>
+            <button class="suggestion" data-prompt="What size am I in Polo Ralph Lauren vs Bershka?">Size match: Polo vs Bershka</button>
+            <button class="suggestion" data-prompt="Which colors match my skin, hair and eyes?">Colors for my profile</button>
+          </div>
+          <form class="chat-input" id="chatForm">
+            <input id="chatInput" placeholder="Ask Fancy Fibbie for outfit or brand deals..." autocomplete="off">
+            <button class="send-btn" aria-label="Send">↗</button>
+          </form>
+        </section>
+
+        <aside class="panel preference-card">
+          <h3>My Fit & Color Profile ♡</h3>
+          <p>Used by Fancy Fibbie AI & Size Matcher.</p>
+          <div class="form-field"><label>Color Palette</label><select id="prefPalette">${['Cool Neutrals & Soft Blues', 'Warm Earth Tones', 'Pastels', 'Monochrome Classic', 'Vibrant Resort'].map(v => `<option ${pr.palette === v ? 'selected' : ''}>${v}</option>`).join('')}</select></div>
+          <div class="form-grid">
+            <div class="form-field"><label>Skin Tone</label><select id="prefSkin">${['Fair / Light', 'Medium / Olive', 'Tan / Warm', 'Deep / Rich'].map(v => `<option ${pr.skin === v ? 'selected' : ''}>${v}</option>`).join('')}</div>
+            <div class="form-field"><label>Undertone</label><select id="prefTone">${['Cool', 'Warm', 'Neutral'].map(v => `<option ${pr.undertone === v ? 'selected' : ''}>${v}</option>`).join('')}</div>
+          </div>
+          <div class="form-grid">
+            <div class="form-field"><label>Hair Type</label><select id="prefHairType">${['Straight', 'Wavy', 'Curly', 'Coily'].map(v => `<option ${pr.hairType === v ? 'selected' : ''}>${v}</option>`).join('')}</div>
+            <div class="form-field"><label>Hair Color</label><select id="prefHair">${['Dark Brown', 'Black', 'Blonde', 'Auburn / Red'].map(v => `<option ${pr.hair === v ? 'selected' : ''}>${v}</option>`).join('')}</div>
+          </div>
+          <div class="form-grid">
+            <div class="form-field"><label>Eye Color</label><select id="prefEyes">${['Brown', 'Hazel', 'Green', 'Blue'].map(v => `<option ${pr.eyes === v ? 'selected' : ''}>${v}</option>`).join('')}</div>
+            <div class="form-field"><label>Height</label><input id="prefHeight" value="${pr.height}"></div>
+          </div>
+          <div class="form-grid">
+            <div class="form-field"><label>Outfit Budget</label><input id="prefBudget" value="${pr.budget}"></div>
+            <div class="form-field"><label>Preferred Fit</label><select id="prefFit">${['Regular', 'Relaxed / Oversized', 'Tailored / Slim'].map(v => `<option ${pr.fit === v ? 'selected' : ''}>${v}</option>`).join('')}</div>
+          </div>
+          <button class="btn full" data-action="save-preferences">Save Style Profile ♡</button>
+        </aside>
+      </div>`;
+  }
+
+  function renderWishlist() {
+    const tr = t();
+    const saved = products.filter(p => state.favorites.includes(p.id));
+    return `${pageHead(tr.wishHeadEyebrow, tr.wishHeadTitle, tr.wishHeadDesc)}
+      ${saved.length ? `<div class="product-grid">${saved.map(productCard).join('')}</div>` : `<div class="panel empty-state"><div class="empty-icon">♡</div><h3>Your wishlist is empty</h3><p>Save clothing, shoes, or accessories with the heart icon.</p><button class="btn" data-nav="home">Browse Fashion</button></div>`}`;
+  }
+
+  function renderProfile() {
+    const tr = t();
+    const pr = state.preferences;
+    const city = currentCity();
+    return `${pageHead(tr.profHeadEyebrow, tr.profHeadTitle, tr.profHeadDesc)}
+      <div class="profile-hero">
+        <div class="profile-avatar">S♡</div>
+        <div><h2>Sophia Pérez ♡</h2><p>@sophia.style · ${city.name}, DR</p></div>
+        <button class="btn small" data-action="premium">Premium · $7.99/mo ✦</button>
+      </div>
+      <div class="profile-grid">
+        <section class="panel">
+          <div class="eyebrow">ACTIVITY</div>
+          <h3 style="font-family:Georgia,serif;font-size:20px;margin:0 0 6px">Shopping & Delivery</h3>
+          <button class="profile-link" data-action="orders"><span class="link-icon">▣</span><span>My Orders<small>${state.orders.length} simulated orders</small></span><span class="arrow">›</span></button>
+          <button class="profile-link" data-nav="wishlist"><span class="link-icon">♡</span><span>My Wishlist<small>${state.favorites.length} saved fashion items</small></span><span class="arrow">›</span></button>
+          <button class="profile-link" data-action="pick-city"><span class="link-icon">⌖</span><span>Delivery City<small>${city.name} (${city.sub})</small></span><span class="arrow">›</span></button>
+        </section>
+        <section class="panel">
+          <div class="eyebrow">STYLE & MEMBERSHIP</div>
+          <h3 style="font-family:Georgia,serif;font-size:20px;margin:0 0 6px">Fit & Colorimetry</h3>
+          <button class="profile-link" data-nav="ai"><span class="link-icon">✧</span><span>Fancy Fibbie AI Profile<small>${pr.palette} · ${pr.height}</small></span><span class="arrow">›</span></button>
+          <button class="profile-link" data-action="premium"><span class="link-icon">✦</span><span>Buy N’ Save Premium ($7.99/mo)<small>Size Matcher + AI Stylist</small></span><span class="arrow">›</span></button>
+          <button class="profile-link" data-action="merchant"><span class="link-icon">🏬</span><span>Store Advertising Portal<small>Promote your clothing store in DR</small></span><span class="arrow">›</span></button>
+        </section>
+      </div>`;
+  }
+
+  function renderInfo() {
+    const tr = t();
+    const isEn = state.lang === 'en';
+    return `${pageHead(tr.infoHeadEyebrow, tr.infoHeadTitle, tr.infoHeadDesc, `<button class="btn ghost small" data-action="edit-team">✎ ${isEn ? 'Edit Team Members' : 'Editar Integrantes'}</button>`)}
+      <div class="panel" style="margin-bottom:18px">
+        <div class="eyebrow">${isEn ? 'MOBILE APPLICATION DOWNLOAD' : 'DESCARGA LA APP MÓVIL'}</div>
+        <h2 style="font-family:Georgia,serif;font-size:23px;margin:0 0 6px">${isEn ? 'Get Buy N’ Save on iOS & Android' : 'Descarga Buy N’ Save en iOS y Android'}</h2>
+        <p style="font-size:12px;color:var(--muted);margin:0 0 12px;line-height:1.55">
+          ${isEn
+            ? 'Take your fashion price alerts, mall store maps, and Fancy Fibbie AI stylist anywhere in the Dominican Republic.'
+            : 'Lleva tus alertas de ofertas de ropa, mapa de plazas en RD y tu asistente Fancy Fibbie IA a donde vayas.'}
+        </p>
+        <div class="store-badges">
+          <button class="store-btn" data-action="download-app" data-os="iOS App Store">
+            <div class="store-logo-box">
+              <svg viewBox="0 0 24 24" fill="#FFFFFF"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.33c.64-.78 1.08-1.86.96-2.94-.93.04-2.06.62-2.72 1.4-.58.68-1.1 1.78-.96 2.84 1.04.08 2.08-.52 2.72-1.3Z"/></svg>
+            </div>
+            <div>
+              <small>${isEn ? 'Download on the' : 'Consíguelo en el'}</small>
+              <strong>App Store</strong>
+            </div>
+            <span class="store-pill-tag">iOS</span>
+          </button>
+          <button class="store-btn android" data-action="download-app" data-os="Google Play Store">
+            <div class="store-logo-box">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M3.6 2.4C3.3 2.7 3.1 3.2 3.1 3.9V20.1C3.1 20.8 3.3 21.3 3.6 21.6L3.7 21.7L12.8 12.6V12.4V12.2L3.7 2.3L3.6 2.4Z" fill="#00D2FF"/>
+                <path d="M15.8 15.6L12.8 12.6V12.4V12.2L15.8 9.2L15.9 9.3L19.5 11.3C20.5 11.9 20.5 12.9 19.5 13.5L15.9 15.5L15.8 15.6Z" fill="#FFCE00"/>
+                <path d="M15.9 15.5L12.8 12.4L3.6 21.6C3.9 22 4.5 22 5.2 21.6L15.9 15.5Z" fill="#F43249"/>
+                <path d="M15.9 9.3L5.2 3.2C4.5 2.8 3.9 2.8 3.6 3.2L12.8 12.4L15.9 9.3Z" fill="#00F076"/>
+              </svg>
+            </div>
+            <div>
+              <small>${isEn ? 'Get it on' : 'Disponible en'}</small>
+              <strong>Google Play</strong>
+            </div>
+            <span class="store-pill-tag">Android</span>
+          </button>
+        </div>
+        <div style="margin-top:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding-top:12px;border-top:1px dashed #e2dad0">
+          <span style="font-size:11px;color:var(--muted)">${isEn ? 'Want to preview the mobile interface right now during class?' : '¿Quieres probar la versión móvil ahora mismo en clase?'}</span>
+          <button class="btn soft small" data-action="toggle-mobile-now">📱 ${isEn ? 'Launch Mobile Simulator' : 'Abrir Simulador Móvil'}</button>
+        </div>
+      </div>
+
+      <div class="section-row">
+        <div>
+          <h2>${isEn ? 'Presentation Team & Creators' : 'Integrantes del Grupo y Creadores'}</h2>
+          <small style="color:var(--muted);font-size:11px">${isEn ? 'Students behind the Buy N’ Save digital platform' : 'Estudiantes responsables del desarrollo y presentación'}</small>
+        </div>
+        <span class="demo-note">v1.0 · Santo Domingo, DR</span>
+      </div>
+
+      <div class="school-banner">
+        <div class="school-top">
+          <div class="school-title">🎓 Colegio Amador</div>
+          <span class="brand-pill">Nov 12, 2026</span>
+        </div>
+        <div class="school-meta-grid">
+          <div class="school-pill">
+            <small>${isEn ? 'Grade / Course' : 'Curso'}</small>
+            <strong>${isEn ? '2nd Year of Secondary (2do de Secundaria)' : '2do de Secundaria'}</strong>
+          </div>
+          <div class="school-pill">
+            <small>${isEn ? 'Subject' : 'Materia'}</small>
+            <strong>Language Arts</strong>
+          </div>
+          <div class="school-pill">
+            <small>${isEn ? 'Presentation Date' : 'Fecha'}</small>
+            <strong>Nov 12, 2026</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-grid">
+        ${state.team.map(m => `
+          <div class="team-card">
+            <div class="team-ava">${m.name.split(' ').map(w => w[0]).slice(0, 2).join('').toUpperCase()}</div>
+            <div>
+              <h4>${m.name}</h4>
+              <small>${isEn ? m.role : (m.roleEs || m.role)}</small>
+              <span>${m.idCode}</span>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="promo-row">
+        <div class="promo-panel">
+          <span class="deco">🛍</span>
+          <div class="eyebrow">${isEn ? 'VALUE PROPOSITION' : 'PROPUESTA DE VALOR'}</div>
+          <h3>${isEn ? 'Fashion Aggregator & Express Delivery' : 'Intermediario de Moda y Delivery'}</h3>
+          <p>${isEn ? 'Centralizes apparel, shoe & accessory deals across DR malls, saving shoppers time and money.' : 'Centraliza ofertas de ropa, zapatos y accesorios de las plazas de RD en un solo carrito.'}</p>
+        </div>
+        <div class="promo-panel blue-panel">
+          <span class="deco">✦</span>
+          <div class="eyebrow">${isEn ? 'MONETIZATION MODEL' : 'MODELO DE NEGOCIO'}</div>
+          <h3>${isEn ? 'B2B Store Ads + $7.99/mo Premium' : 'Publicidad B2B + Premium $7.99/mes'}</h3>
+          <p>${isEn ? 'Revenue from sponsored mall store placements, creator reels, delivery fees, and AI Stylist subscriptions.' : 'Ingresos por espacios patrocinados de tiendas, reels de influencers, delivery y suscripción IA.'}</p>
+        </div>
+      </div>
+    `;
+  }
+
+  function render() {
+    renderChrome();
+    const views = { home: renderHome, malls: renderMalls, compare: renderCompare, ai: renderAI, wishlist: renderWishlist, profile: renderProfile, info: renderInfo };
+    main.innerHTML = (views[state.page] || renderHome)();
+    if (state.page === 'ai') {
+      const cm = $('#chatMessages');
+      if (cm) cm.scrollTop = cm.scrollHeight;
+    }
+  }
+
+  function addToCart(id) {
+    const p = productById(id);
+    if (!p) return;
+    const row = state.cart.find(x => x.id === p.id);
+    if (row) row.qty++;
+    else state.cart.push({ id: p.id, qty: 1 });
+    persist();
+    renderChrome(true);
+    toast(`${p.brand} — ${pName(p)} added to bag 🛍`);
+  }
+
+  function toggleFavorite(id) {
+    const n = Number(id);
+    state.favorites = state.favorites.includes(n) ? state.favorites.filter(x => x !== n) : [...state.favorites, n];
+    persist();
+    render();
+    toast(state.favorites.includes(n) ? 'Saved to Wishlist ♡' : 'Removed from Wishlist');
+  }
+
+  function openOverlay(html, kind = 'modal') {
+    overlayRoot.innerHTML = `<div class="overlay ${kind === 'modal' ? 'modal-wrap' : ''}" data-overlay="true"><div class="${kind === 'drawer' ? 'drawer' : 'modal'}">${html}</div></div>`;
+  }
+  function closeOverlay() { overlayRoot.innerHTML = ''; }
+
+  function openCityPicker() {
+    const cur = currentCity();
+    openOverlay(`
+      <div class="modal-head">
+        <div>
+          <div class="eyebrow">DELIVERY & MALL COVERAGE · DR</div>
+          <h2>${state.lang === 'en' ? 'Select Your City' : 'Selecciona tu Ciudad'}</h2>
+          <p>${state.lang === 'en' ? 'Choose your city in Dominican Republic to update delivery rates and mall availability.' : 'Elige tu ciudad en República Dominicana para actualizar tarifas de delivery y disponibilidad.'}</p>
+        </div>
+        <button class="close-btn" data-action="close">×</button>
+      </div>
+      <div class="city-grid">
+        ${citiesDR.map(c => `
+          <button type="button" class="city-option ${c.id === cur.id ? 'selected' : ''}" data-action="set-city" data-city="${c.id}">
+            <div>
+              <strong>⌖ ${c.name}</strong>
+              <small>${c.sub}</small>
+            </div>
+            <span class="brand-pill">${formatPrice(c.fee)}</span>
+          </button>
+        `).join('')}
+      </div>
+    `);
+  }
+
+  function openTeamEditor() {
+    const rows = state.team.map((m, idx) => `
+      <div class="panel" style="padding:12px;margin-bottom:10px">
+        <div class="form-grid">
+          <div class="form-field" style="margin:0"><label>Member #${idx + 1} Name</label><input class="tm-name" value="${m.name}" required></div>
+          <div class="form-field" style="margin:0"><label>Subtitle / Grade</label><input class="tm-id" value="${m.idCode}"></div>
+        </div>
+        <div class="form-field" style="margin:8px 0 0"><label>Role</label><input class="tm-role" value="${m.role}"></div>
+      </div>
+    `).join('');
+    openOverlay(`
+      <div class="modal-head">
+        <div><div class="eyebrow">CUSTOMIZE PRESENTATION</div><h2>Edit Team Members</h2><p>Update the names and roles of the students presenting Buy N’ Save.</p></div>
+        <button class="close-btn" data-action="close">×</button>
+      </div>
+      <form id="teamForm">
+        ${rows}
+        <button class="btn full" type="submit">Save Team Members ✓</button>
+      </form>
+    `);
+  }
+
+  function openDownloadModal(osName) {
+    const isApple = osName.includes('iOS');
+    const storeLogo = isApple
+      ? `<svg width="36" height="36" viewBox="0 0 24 24" fill="#17385f"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.33c.64-.78 1.08-1.86.96-2.94-.93.04-2.06.62-2.72 1.4-.58.68-1.1 1.78-.96 2.84 1.04.08 2.08-.52 2.72-1.3Z"/></svg>`
+      : `<svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M3.6 2.4C3.3 2.7 3.1 3.2 3.1 3.9V20.1C3.1 20.8 3.3 21.3 3.6 21.6L3.7 21.7L12.8 12.6V12.4V12.2L3.7 2.3L3.6 2.4Z" fill="#00D2FF"/><path d="M15.8 15.6L12.8 12.6V12.4V12.2L15.8 9.2L15.9 9.3L19.5 11.3C20.5 11.9 20.5 12.9 19.5 13.5L15.9 15.5L15.8 15.6Z" fill="#FFCE00"/><path d="M15.9 15.5L12.8 12.4L3.6 21.6C3.9 22 4.5 22 5.2 21.6L15.9 15.5Z" fill="#F43249"/><path d="M15.9 9.3L5.2 3.2C4.5 2.8 3.9 2.8 3.6 3.2L12.8 12.4L15.9 9.3Z" fill="#00F076"/></svg>`;
+
+    openOverlay(`
+      <div class="order-success">
+        <div class="success-icon" style="background:#edf3fb">${storeLogo}</div>
+        <div class="eyebrow">${osName}</div>
+        <h2>Buy N’ Save Mobile App</h2>
+        <p>Scan with your phone camera or launch our interactive mobile simulator directly on screen for your class presentation.</p>
+        <div style="width:128px;height:128px;margin:0 auto 16px;border-radius:18px;background:#fff;border:2px solid #dce6f5;display:grid;place-items:center;font-family:monospace;font-size:11px;color:var(--ink);box-shadow:0 8px 20px rgba(23,56,95,.08)">
+          [ QR CODE ]<br>buysave.do/app
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="btn full" data-action="toggle-mobile-now">📱 Try Mobile View Now</button>
+          <button class="btn ghost full" data-action="close">Close</button>
+        </div>
+      </div>
+    `);
+  }
+
+  function openCart() {
+    const city = currentCity();
+    const lines = state.cart.map(item => {
+      const p = productById(item.id);
+      if (!p) return '';
+      return `<div class="cart-line">
+        <div class="cart-thumb">${p.emoji}</div>
+        <div>
+          <span class="brand-pill" style="font-size:9px">${p.brand}</span>
+          <strong style="margin-top:4px">${pName(p)}</strong>
+          <small>${p.store}</small>
+          <div class="qty-control">
+            <button data-action="qty" data-id="${p.id}" data-delta="-1">−</button>
+            <span>${item.qty}</span>
+            <button data-action="qty" data-id="${p.id}" data-delta="1">+</button>
+          </div>
+        </div>
+        <div class="cart-line-price">${formatPrice(p.offers[0].price * item.qty)}</div>
+      </div>`;
+    }).join('');
+    const sub = cartSubtotal();
+    const fee = sub ? city.fee : 0;
+    openOverlay(`
+      <div class="modal-head"><div><h2>Shopping Bag 🛍</h2><p>Delivery to <strong>${city.name}</strong>.</p></div><button class="close-btn" data-action="close">×</button></div>
+      ${lines || '<div class="empty-state"><div class="empty-icon">🛍</div><h3>Your bag is empty</h3><p>Add clothing, shoes, or accessories to start.</p></div>'}
+      <div class="cart-summary">
+        <div class="summary-row"><span>Subtotal</span><strong>${formatPrice(sub)}</strong></div>
+        <div class="summary-row"><span>Courier Delivery (${city.name})</span><span>${formatPrice(fee)}</span></div>
+        <div class="summary-row total"><span>Estimated Total</span><span>${formatPrice(sub + fee)}</span></div>
+        <button class="btn full" data-action="checkout" ${state.cart.length ? '' : 'disabled style="opacity:.45"'}>Proceed to Delivery →</button>
+      </div>
+    `, 'drawer');
+  }
+
+  function openCheckout() {
+    const city = currentCity();
+    const sub = cartSubtotal();
+    openOverlay(`
+      <div class="modal-head"><div><h2>Express Delivery Checkout</h2><p>Consolidated delivery to <strong>${city.name}</strong>.</p></div><button class="close-btn" data-action="close">×</button></div>
+      <form id="checkoutForm">
+        <div class="form-grid">
+          <div class="form-field"><label>Full Name</label><input required value="Sophia Pérez"></div>
+          <div class="form-field"><label>Phone</label><input required value="809-555-0194"></div>
+        </div>
+        <div class="form-field"><label>City & Sector</label><input required value="${city.name} — ${city.sub.split('·')[0].trim()}"></div>
+        <div class="best-deal">
+          <div><small>Order + Delivery (${city.name})</small><strong>${formatPrice(sub + city.fee)}</strong></div>
+          <span class="best-label">Express Courier</span>
+        </div>
+        <button class="btn full" type="submit">Confirm Order →</button>
+      </form>
+    `);
+  }
+
+  function openDetails(id) {
+    const p = productById(id);
+    if (!p) return;
+    const best = [...p.offers].sort((a, b) => a.price - b.price)[0];
+    openOverlay(`
+      <div class="modal-head">
+        <div><div class="eyebrow">${p.brand} · ${pCat(p)}</div><h2>${pName(p)}</h2><p>Available at ${p.mall}</p></div>
+        <button class="close-btn" data-action="close">×</button>
+      </div>
+      <div class="detail-art ${p.tone}">${p.emoji}</div>
+      <div class="best-deal">
+        <div><small>Best Deal</small><strong>${formatPrice(best.price)}</strong><span> at ${best.store}</span></div>
+        <span class="brand-pill">${p.brand}</span>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn full" data-action="add" data-id="${p.id}">Add to Bag</button>
+        <button class="btn ghost full" data-action="compare-item" data-id="${p.id}">Compare Stores</button>
+      </div>
+    `);
+  }
+
+  function openReel(reelId) {
+    const r = reels.find(x => x.id === reelId);
+    if (!r) return;
+    const p = productById(r.productId);
+    openOverlay(`
+      <div class="modal-head">
+        <div><div class="eyebrow">INFLUENCER SPOTLIGHT · ${r.mall}</div><h2>${r.handle}</h2><p>${r.brand} · ${r.discount} Promo</p></div>
+        <button class="close-btn" data-action="close">×</button>
+      </div>
+      <div class="reel-visual ${r.theme}" style="height:230px;border-radius:18px;margin-bottom:14px">
+        <div>
+          <div class="story-progress"><div class="story-progress-fill"></div></div>
+          <div class="reel-top"><span class="reel-badge"><span class="reel-dot"></span> PLAYING LOOKBOOK</span><span class="reel-badge">${r.discount}</span></div>
+        </div>
+        <div class="reel-center"><span class="reel-emoji" style="font-size:74px">${r.emoji}</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:700">
+          <span>Featured: ${p.brand} — ${pName(p)} (${formatPrice(p.offers[0].price)})</span>
+          <button class="pill-toggle" style="height:28px;padding:0 10px;font-size:11px" data-action="like-reel">♡ Love</button>
+        </div>
+      </div>
+      <div class="reel-code" style="margin-bottom:14px;padding:10px 14px;font-size:12px">
+        <span>Promo Code: <strong>${r.code}</strong></span>
+        <button class="btn small" data-action="copy-code" data-code="${r.code}">Copy Code</button>
+      </div>
+      <button class="btn full" data-action="add" data-id="${p.id}">Shop Featured Piece (${formatPrice(p.offers[0].price)}) →</button>
+    `);
+  }
+
+  function openPremium() {
+    openOverlay(`
+      <div class="modal-head">
+        <div><div class="eyebrow">BUY N’ SAVE PREMIUM</div><h2>Elevate Your Style · $7.99/mo</h2><p>Cancel anytime. Built for smarter fashion shopping in DR.</p></div>
+        <button class="close-btn" data-action="close">×</button>
+      </div>
+      <div class="promo-panel blue-panel" style="min-height:unset;margin-bottom:14px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h3>Premium Membership</h3>
+          <strong style="font-size:24px;color:var(--ink)">$7.99<span style="font-size:11px;font-weight:500">/mo</span></strong>
+        </div>
+        <p style="max-width:none;margin:6px 0 0">Includes unlimited Fancy Fibbie AI styling, Cross-Brand Size Matcher, Personal Colorimetry (skin, hair, eyes, height), and VIP price-drop alerts.</p>
+      </div>
+      <div class="panel" style="padding:16px;margin-bottom:14px">
+        <strong style="font-size:12px">✦ Cross-Brand Size Matcher</strong>
+        <p style="font-size:10px;color:#8c9aaa;margin:4px 0 10px">Convert your regular size across Zara, Bershka, Nike, Polo Ralph Lauren, Tommy Hilfiger & Old Navy.</p>
+        <div class="form-grid">
+          <div class="form-field"><label>Reference Brand</label><select id="sizeBrand"><option>Zara</option><option>Polo Ralph Lauren</option><option>Nike</option><option>Bershka</option><option>Tommy Hilfiger</option><option>Old Navy</option></select></div>
+          <div class="form-field"><label>Your Size</label><select id="sizeValue"><option>XS</option><option selected>S</option><option>M</option><option>L</option></select></div>
+        </div>
+        <button class="btn soft full" data-action="size-match">Calculate Brand Equivalents</button>
+        <div id="sizeResult" style="font-size:11px;color:#2e66a5;margin-top:10px"></div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn full" data-action="activate-prem">Activate $7.99/mo Trial ✦</button>
+        <button class="btn ghost full" data-nav="ai">Open Fancy Fibbie AI →</button>
+      </div>
+    `);
+  }
+
+  function openMerchant() {
+    openOverlay(`
+      <div class="modal-head"><div><div class="eyebrow">B2B STORE PORTAL</div><h2>Promote Your Fashion Store</h2><p>Reach shoppers browsing Ágora, BlueMall, 360, Sambil & Megacentro.</p></div><button class="close-btn" data-action="close">×</button></div>
+      <form id="merchantForm">
+        <div class="form-field"><label>Clothing / Shoe Brand Name</label><input id="merchantName" required placeholder="e.g. Anthony's / KB / Sport Line"></div>
+        <div class="form-grid">
+          <div class="form-field"><label>Shopping Mall</label><select><option>Ágora Mall</option><option>BlueMall</option><option>Galería 360</option><option>Sambil</option><option>Megacentro</option><option>Downtown Center</option></select></div>
+          <div class="form-field"><label>Ad Format</label><select><option>Sponsored Product Feed</option><option>Influencer Micro-Video Reel</option><option>Mall Featured Banner</option></select></div>
+        </div>
+        <button class="btn full" type="submit">Submit Ad Campaign →</button>
+      </form>
+    `);
+  }
+
+  function openOrders() {
+    const rows = state.orders.map(o => `<div class="offer-row"><div class="offer-store"><div class="store-dot">✓</div><div><strong>Order #${o.id}</strong><small>${o.date} · ${o.city || 'Santo Domingo'}</small></div></div><strong>${formatPrice(o.total)}</strong><span class="best-label">In Transit</span></div>`).join('');
+    openOverlay(`<div class="modal-head"><div><h2>My Orders</h2><p>Session order history.</p></div><button class="close-btn" data-action="close">×</button></div>${rows || '<div class="empty-state"><div class="empty-icon">▣</div><h3>No orders yet</h3><p>Complete a test checkout to see your delivery tracker here.</p></div>'}`);
+  }
+
+  function sendChat(text) {
+    const msg = (text || '').trim();
+    if (!msg || state.isTyping) return;
+    state.chat.push({ who: 'user', text: msg.replace(/</g, '&lt;') });
+    state.isTyping = true;
+    render();
+
+    const pr = state.preferences;
+    const lower = msg.toLowerCase();
+    let answer = `Based on your ${pr.palette} palette and ${pr.height} height in <strong>${currentCity().name}</strong>, I recommend pairing the <strong>ZARA Ribbed Knit Sweater</strong> (${formatPrice(28.99)}) with <strong>NIKE Air Force 1</strong> (${formatPrice(89.99)}) at Ágora Mall! ✨`;
+    if (lower.includes('size') || lower.includes('talla')) {
+      answer = `In <strong>Polo Ralph Lauren</strong> & <strong>Tommy Hilfiger</strong>, your fit aligns with Size S, which converts to <strong>Bershka Size M</strong> (slim European cut) and <strong>Old Navy Size S</strong>. 🎀`;
+    } else if (lower.includes('color')) {
+      answer = `With ${pr.undertone.toLowerCase()} undertones, ${pr.hair.toLowerCase()} hair, and ${pr.eyes.toLowerCase()} eyes, soft periwinkle blue, cream, navy, and sage green will brighten your complexion best! ♡`;
+    }
+
+    setTimeout(() => {
+      state.isTyping = false;
+      state.chat.push({ who: 'bot', text: answer });
+      if (state.page === 'ai') render();
+    }, 650);
+  }
+
+  document.addEventListener('click', e => {
+    const navBtn = e.target.closest('[data-nav]');
+    if (navBtn) { e.preventDefault(); closeOverlay(); go(navBtn.dataset.nav); return; }
+    const prompt = e.target.closest('[data-prompt]');
+    if (prompt) { sendChat(prompt.dataset.prompt); return; }
+    const btn = e.target.closest('[data-action]');
+    if (!btn) return;
+    const a = btn.dataset.action, id = btn.dataset.id;
+
+    if (a === 'pick-city') { openCityPicker(); return; }
+    if (a === 'set-city') {
+      state.cityId = btn.dataset.city;
+      persist();
+      closeOverlay();
+      render();
+      toast(`Location updated: ${currentCity().name} ⌖`);
+      return;
+    }
+    if (a === 'cart') { openCart(); return; }
+    if (a === 'close') { closeOverlay(); return; }
+    if (a === 'favorite') { toggleFavorite(id); return; }
+    if (a === 'add') { addToCart(id); if (overlayRoot.innerHTML) closeOverlay(); return; }
+    if (a === 'details') { openDetails(id); return; }
+    if (a === 'compare-item') { closeOverlay(); state.compareId = Number(id); go('compare'); return; }
+    if (a === 'category') { state.category = btn.dataset.category; render(); return; }
+    if (a === 'filter-mall') { state.selectedMall = btn.dataset.mall; go('home'); toast(`Filtered by ${btn.dataset.mall}`); return; }
+    if (a === 'filter-store') {
+      state.search = btn.dataset.store;
+      $('#globalSearch').value = btn.dataset.store;
+      go('home');
+      toast(`Showing deals for ${btn.dataset.store}`);
+      return;
+    }
+    if (a === 'explore') { state.category = 'All'; state.selectedMall = 'All Malls'; state.search = ''; $('#globalSearch').value = ''; render(); return; }
+    if (a === 'clear-search') { state.category = 'All'; state.selectedMall = 'All Malls'; state.search = ''; $('#globalSearch').value = ''; render(); return; }
+    if (a === 'reel') { openReel(btn.dataset.reel); return; }
+    if (a === 'like-reel') { btn.textContent = '♥ Loved!'; btn.style.color = '#d16d80'; toast('Lookbook liked ♥'); return; }
+    if (a === 'copy-code') { navigator.clipboard?.writeText(btn.dataset.code); toast(`Promo code ${btn.dataset.code} copied!`); return; }
+    if (a === 'checkout') { openCheckout(); return; }
+    if (a === 'qty') {
+      const row = state.cart.find(x => x.id === Number(id));
+      if (row) {
+        row.qty += Number(btn.dataset.delta);
+        if (row.qty <= 0) state.cart = state.cart.filter(x => x.id !== Number(id));
+        persist(); openCart(); renderChrome(true);
+      }
+      return;
+    }
+    if (a === 'premium') { openPremium(); return; }
+    if (a === 'activate-prem') { closeOverlay(); toast('Buy N’ Save Premium ($7.99/mo) Preview Activated ✦'); return; }
+    if (a === 'merchant') { openMerchant(); return; }
+    if (a === 'orders') { openOrders(); return; }
+    if (a === 'edit-team') { openTeamEditor(); return; }
+    if (a === 'download-app') { openDownloadModal(btn.dataset.os); return; }
+    if (a === 'toggle-mobile-now') { closeOverlay(); state.mobileSim = true; renderChrome(); toast('Mobile View Mode Enabled 📱'); return; }
+    if (a === 'save-preferences') {
+      state.preferences = {
+        palette: $('#prefPalette').value, skin: $('#prefSkin').value, undertone: $('#prefTone').value,
+        hairType: $('#prefHairType').value, hair: $('#prefHair').value, eyes: $('#prefEyes').value,
+        height: $('#prefHeight').value, budget: $('#prefBudget').value, fit: $('#prefFit').value
+      };
+      persist(); toast('Style & Colorimetry profile saved ♡'); return;
+    }
+    if (a === 'size-match') {
+      const b = $('#sizeBrand').value, s = $('#sizeValue').value;
+      const map = {
+        XS: 'Zara XS · Bershka S · Polo XS · Old Navy XS · Nike US 6',
+        S: 'Zara S · Bershka M · Polo S · Old Navy S · Nike US 7.5',
+        M: 'Zara M · Bershka L · Polo M · Old Navy M · Nike US 9',
+        L: 'Zara L · Bershka XL · Polo L · Old Navy L · Nike US 10.5'
+      };
+      $('#sizeResult').innerHTML = `<strong>Match for ${b} (${s}):</strong> ${map[s]}`;
+      return;
+    }
+  });
+
+  $('#langBtn').addEventListener('click', () => {
+    state.lang = state.lang === 'en' ? 'es' : 'en';
+    state.category = state.lang === 'en' ? 'All' : 'Todo';
+    render();
+    toast(state.lang === 'en' ? 'Language: English' : 'Idioma: Español');
+  });
+
+  $('#currBtn').addEventListener('click', () => {
+    state.currency = state.currency === 'USD' ? 'DOP' : 'USD';
+    render();
+    toast(`Currency: ${state.currency}`);
+  });
+
+  $('#mobileToggleBtn').addEventListener('click', () => {
+    state.mobileSim = !state.mobileSim;
+    renderChrome();
+    toast(state.mobileSim ? 'Mobile View Mode Enabled 📱' : 'Desktop Web View Enabled 🖥');
+  });
+
+  document.addEventListener('input', e => {
+    if (e.target.id === 'globalSearch') {
+      state.search = e.target.value;
+      if (state.page !== 'home') state.page = 'home';
+      render();
+      const input = $('#globalSearch');
+      if (input) { input.focus(); input.setSelectionRange(input.value.length, input.value.length); }
+    }
+  });
+
+  document.addEventListener('change', e => {
+    if (e.target.id === 'compareSelect') { state.compareId = Number(e.target.value); render(); }
+  });
+
+  document.addEventListener('submit', e => {
+    if (e.target.id === 'chatForm') {
+      e.preventDefault();
+      const input = $('#chatInput');
+      const val = input.value;
+      input.value = '';
+      sendChat(val);
+      return;
+    }
+    if (e.target.id === 'teamForm') {
+      e.preventDefault();
+      const names = [...e.target.querySelectorAll('.tm-name')];
+      const ids = [...e.target.querySelectorAll('.tm-id')];
+      const roles = [...e.target.querySelectorAll('.tm-role')];
+      state.team = names.map((el, i) => ({
+        name: el.value.trim() || 'Team Member',
+        idCode: ids[i].value.trim(),
+        role: roles[i].value.trim(),
+        roleEs: roles[i].value.trim()
+      }));
+      persist();
+      closeOverlay();
+      render();
+      toast('Team members updated ✓');
+      return;
+    }
+    if (e.target.id === 'checkoutForm') {
+      e.preventDefault();
+      const city = currentCity();
+      const total = cartSubtotal() + city.fee;
+      const order = { id: String(Date.now()).slice(-6), date: new Date().toLocaleDateString(), total, city: city.name };
+      state.orders.unshift(order);
+      state.cart = [];
+      persist();
+      renderChrome(true);
+      openOverlay(`
+        <div class="order-success">
+          <div class="success-icon">✓</div>
+          <h2>Order #${order.id} Confirmed!</h2>
+          <p>Our courier is collecting your pieces across DR mall stores for delivery to <strong>${city.name}</strong>.</p>
+          <div class="track-steps">
+            <div class="track-step done">1. Mall Pickup ✓</div>
+            <div class="track-step done">2. Courier Assigned</div>
+            <div class="track-step">3. Arriving (${city.name})</div>
+          </div>
+          <button class="btn full" data-action="close">Back to Buy N’ Save</button>
+        </div>
+      `);
+      return;
+    }
+    if (e.target.id === 'merchantForm') {
+      e.preventDefault();
+      const name = $('#merchantName').value;
+      closeOverlay();
+      toast(`Ad campaign created for ${name}!`);
+    }
+  });
+
+  overlayRoot.addEventListener('click', e => { if (e.target.matches('[data-overlay="true"]')) closeOverlay(); });
+  render();
+})();
+</script>
+</body>
+</html>
